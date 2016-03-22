@@ -3,6 +3,11 @@ lib_fts
 
 single-file public domain libraries
 
+library | language | description
+--------------------- | -------- | --------------------------------
+**[fts_fuzzy_match.h](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h)** | C++ | SublimeText inspired fuzzy string matching
+**[fts_fuzzy_match.js](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js)** | JavaScript | SublimeText inspired fuzzy string matching
+
 
 FAQ
 ---
