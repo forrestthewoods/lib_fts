@@ -39,7 +39,7 @@
 
     <script>
         var patternField;
-        var matchFn = fuzzy_match_scored;
+        var matchFn = fuzzy_match;
         var resultsList;
         var dataSets = {};
         var currentDataSet;
@@ -72,18 +72,18 @@
             var results = []
             for (var index = 0; index < currentDataSet.length; ++index) {
                 var str = currentDataSet[index];
-                if (matchFn == fuzzy_match && matchFn(pattern, str)) {
+                if (matchFn == fuzzy_match_simple && matchFn(pattern, str)) {
                     results.push(str);
                 }
-                else if (matchFn == fuzzy_match_scored) {
+                else if (matchFn == fuzzy_match) {
                     var result = matchFn(pattern, str);
                     if (result[0])
-                        results.push([result[1], result[2]]);
+                        results.push([result[1], result[1] + " - " + result[2]]);
                 }
             }
 
             // Sort and map results which are scored
-            if (matchFn == fuzzy_match_scored) {
+            if (matchFn == fuzzy_match) {
                 results = results
                     .sort(function(a,b) { return b[0] - a[0]; })
                     .map(function(v) { return v[1]; });
@@ -96,13 +96,12 @@
             for (index = 0; index < results.length && index < max_entries; ++index) {
                 var li = document.createElement('li');
                 li.innerHTML = results[index];
-                //li.appendChild(document.createTextNode(results[index]));
                 resultsList.appendChild(li);
             }
         };
 
         onFormatChange = function(radio) {
-            matchFn = radio.value == "PrintByScore" ? fuzzy_match_scored : fuzzy_match;
+            matchFn = radio.value == "PrintByScore" ? fuzzy_match : fuzzy_match_simple;
             onPatternChange();
         }
 

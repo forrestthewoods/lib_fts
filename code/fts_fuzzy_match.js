@@ -4,8 +4,9 @@
 //   recognized, you are granted a perpetual, irrevocable license to copy,
 //   distribute, and modify this file as you see fit.
 
+
 // Returns true if each character in pattern is found sequentially within str
-function fuzzy_match(pattern, str) {
+function fuzzy_match_simple(pattern, str) {
 
     var patternIdx = 0;
     var strIdx = 0;
@@ -23,9 +24,12 @@ function fuzzy_match(pattern, str) {
     return patternLength != 0 && strLength != 0 && patternIdx == patternLength ? true : false;
 }
 
-// Returns if the pattern is found sequentially with str and a score
-// ReturnData: [bool, score, formatedStr]
-function fuzzy_match_scored(pattern, str) {
+// Returns [bool, score, formattedStr]
+// bool: true if each character in pattern is found sequentially within str
+// score: integer; higher is better match. Value has no intrinsic meaning. Range varies with pattern. 
+//        Can only compare scores with same search pattern.
+// formattedStr: input str with matched characters marked in <b> tags. Delete if unwanted.
+function fuzzy_match(pattern, str) {
    
     // Score consts
     var adjacency_bonus = 5;                // bonus for adjacent matches
@@ -43,7 +47,7 @@ function fuzzy_match_scored(pattern, str) {
     var strLength = str.length;
     var prevMatched = false;
     var prevLower = false;
-    var prevSeparator = true;               // true so if first letter match gets separator bonus
+    var prevSeparator = true;       // true so if first letter match gets separator bonus
 
     var formattedStr = "";
 
@@ -72,13 +76,14 @@ function fuzzy_match_scored(pattern, str) {
             if (prevLower && strChar == strChar.toUpperCase())
                 score += camel_bonus;
 
-            // Formatted string
+            // Formatted string; wrap matched characters in bold
             formattedStr += "<b>" + strChar + "</b>";
 
             prevMatched = true;
             ++patternIdx;
         }
         else {
+            // Append unmatch characters
             formattedStr += strChar;
 
             score += unmatched_letter_penalty;
@@ -91,9 +96,8 @@ function fuzzy_match_scored(pattern, str) {
         ++strIdx;
     }
 
-    var matched = patternIdx == patternLength;
-    if (matched)
-        formattedStr += str.substr(strIdx, strLength - strIdx);
+    // Finish out formatted string after last pattern matched
+    formattedStr += str.substr(strIdx, strLength - strIdx);
 
-    return [matched, score, formattedStr];
+    return [patternIdx == patternLength, score, formattedStr];
 }

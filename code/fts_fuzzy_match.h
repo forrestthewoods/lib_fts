@@ -8,7 +8,7 @@
 #ifndef FTS_FUZZY_MATCH_H
 #define FTS_FUZZY_MATCH_H
 
-#include <ctype.h> // for tolower
+#include <ctype.h> // ::tolower, ::toupper
 
 namespace fts {
     
@@ -25,7 +25,8 @@ namespace fts {
     }
 
     // Returns true if each character in pattern is found sequentially within str
-    // iff found then outScore is also set
+    // iff found then outScore is also set. Score value has no intrinsic meaning. Range varies with pattern. 
+    // Can only compare scores with same search pattern.
     static bool fuzzy_match(char const * pattern, char const * str, int & outScore) 
     {
         // Score consts
