@@ -6,7 +6,7 @@ single-file public domain libraries
 library | language | description
 --------------------- | -------- | --------------------------------
 **[fts_fuzzy_match.h](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h)** | C++ | SublimeText inspired fuzzy string matching
-**[fts_fuzzy_match.js](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js)** | JavaScript | SublimeText inspired fuzzy string matching
+**[fts_fuzzy_match.js](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js)** | JavaScript | Fuzzy string matching in JavaScript
 
 
 FAQ
@@ -15,14 +15,16 @@ FAQ
 #### What is this?
 My personal take on [STB](https://github.com/nothings/stb) style file libraries. Small librabries in one or two files that can be trivially drag'n'dropped into an existing project.
 
+No convoluted build systems. No dependency rabbit holes. Easy to read, easy to use.
+
 #### What license?
-Public domain. Do what you want.
+All source code is public domain. Do whatever you want.
 
 #### What is FTS?
 My initials; Forrest Thomas Smith.
 
 #### What language is used?
-Several! Expect to see at least C++, C#, and JavaScript. Multiple language implementations are provided where appropriate.
+Several! C++ is the baseline. Multiple language implementations are provided where appropriate.
 
 #### Why C++ and not C?
 Because "proper" open source C code is full of gross macros and defines. I'd rather write simple code in a C++ namespace and call it a day.
