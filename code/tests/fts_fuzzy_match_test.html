@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>Fuzzy String Matcher</title>
+    <script type="text/javascript" src="/lib_fts/code/fts_fuzzy_match.js"></script>
+</head>
+
+<body>
+    <h1>Fuzzy String Matcher</h1>
+
+    <!-- Pick Source -->
+    <h2>Data Set</h2>
+    <form id="sourceForm">
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/ue4_filenames.txt" checked> Unreal Engine 4 files<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/hearthstone_cardlist.txt"> Hearthstone Card List<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/magicthegathering_cardlist.txt"> Magic the Gathering Card List<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/english_wordlist_2k.txt"> Wordlist 2k<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/english_wordlist_58k.txt"> Wordlist 58k
+    </form>
+
+    <!-- Pick Results Format -->
+    <h2>Results Format</h2>
+    <form>
+      <input type="radio" name="ResultsFormat" onclick="onFormatChange(this);" value="PrintByScore" checked> Best Match<br>
+      <input type="radio" name="ResultsFormat" onclick="onFormatChange(this);" value="PrintAlphabetically"> Alphabetical
+    </form>
+
+    <!-- Input field -->
+    <h2>Search Pattern</h2>
+    <form>
+        <input id="searchPatternField" type="text" size="25" value="">
+    </form>
+
+    <!-- Results -->
+    <h2>Results</h2>
+    <ul id="resultsList">
+    </ul>
+
+    <script>
+        var patternField;
+        var matchFn = fuzzy_match_scored;
+        var resultsList;
+        var dataSets = {};
+        var currentDataSet;
+
+        onload = function() {
+            patternField = document.getElementById('searchPatternField');
+            patternField.oninput = onPatternChange;
+            patternField.onpropertychange = patternField.oninput;
+
+            resultsList = document.getElementById('resultsList');
+
+            var sourceForm = document.getElementById('sourceForm');
+            for (var i = 0; i < sourceForm.elements.length; ++i)
+                if (sourceForm.elements[i].checked)
+                    loadDataFile(sourceForm.elements[i].value);
+        };
+
+        onPatternChange = function() {
+            var pattern = patternField.value;
+
+            // Clear old results
+            while (resultsList.firstChild)
+                resultsList.removeChild(resultsList.firstChild);
+
+            // Early out on empty pattern (such as startup)
+            if (pattern.length == 0)
+                return;
+
+            // Match new results            
+            var results = []
+            for (var index = 0; index < currentDataSet.length; ++index) {
+                var str = currentDataSet[index];
+                if (matchFn == fuzzy_match && matchFn(pattern, str)) {
+                    results.push(str);
+                }
+                else if (matchFn == fuzzy_match_scored) {
+                    var result = matchFn(pattern, str);
+                    if (result[0])
+                        results.push([result[1], result[2]]);
+                }
+            }
+
+            // Sort and map results which are scored
+            if (matchFn == fuzzy_match_scored) {
+                results = results
+                    .sort(function(a,b) { return b[0] - a[0]; })
+                    .map(function(v) { return v[1]; });
+            }
+
+            // Because adding too many elements is catastrophically slow
+            var max_entries = 200;
+
+            // Create HTML elements for results
+            for (index = 0; index < results.length && index < max_entries; ++index) {
+                var li = document.createElement('li');
+                li.innerHTML = results[index];
+                //li.appendChild(document.createTextNode(results[index]));
+                resultsList.appendChild(li);
+            }
+        };
+
+        onFormatChange = function(radio) {
+            matchFn = radio.value == "PrintByScore" ? fuzzy_match_scored : fuzzy_match;
+            onPatternChange();
+        }
+
+        onDataSetChange = function(radio) {
+            var filename = radio.value;
+            if (dataSets[filename] == null) {
+                loadDataFile(filename);
+            }
+            else {
+                currentDataSet = dataSets[filename];
+                onPatternChange();
+            }
+        };
+
+        loadDataFile = function(filename) {
+            var client = new XMLHttpRequest();
+            client.open('GET', filename, true);
+            client.onreadystatechange = function() {
+                dataSets[filename] = client.responseText.split("\n");
+                currentDataSet = dataSets[filename];
+                onPatternChange();
+            }
+            client.send();
+        }
+
+    </script>
+</body>
