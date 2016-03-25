@@ -31,6 +31,8 @@
     <h2>Search Pattern</h2>
     <form>
         <input id="searchPatternField" type="text" size="25" value="">
+        <button id="rematchButton" type="button">Repeat Search</button>
+        <button id="rematchManyButton" type="button">Repeat Search for 3s</button> 
     </form>
 
     <!-- Results -->
@@ -50,6 +52,12 @@
             patternField = document.getElementById('searchPatternField');
             patternField.oninput = onPatternChange;
             patternField.onpropertychange = patternField.oninput;
+
+            rematchButton = document.getElementById('rematchButton');
+            rematchButton.onclick = onPatternChange;
+            
+            rematchManyButton = document.getElementById('rematchManyButton');
+            rematchManyButton.onclick = onBenchmark;
 
             resultsTime = document.getElementById('resultsTime');
             resultsList = document.getElementById('resultsList');
@@ -107,6 +115,20 @@
                 li.innerHTML = results[index];
                 resultsList.appendChild(li);
             }
+        };
+
+        onBenchmark = function() {
+            var startTime = performance.now();  
+            var minimumEndTime = startTime + 3000;
+            var numIterations = 0;
+            do {
+                numIterations++;
+                onPatternChange();
+            } while (performance.now() < minimumEndTime);
+
+            var duration = performance.now() - startTime;
+            var averageDuration = duration / numIterations;
+            resultsTime.innerText = "Matched in " + averageDuration.toFixed(1) + " milliseconds (average across " + numIterations + " matches)";
         };
 
         onFormatChange = function(radio) {
