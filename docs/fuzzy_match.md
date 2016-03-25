@@ -1,25 +1,25 @@
 # Fuzzy Match
 
-A Sublime Text inspired fuzzy match algorithm
+A [Sublime Text](https://www.sublimetext.com/) inspired fuzzy match algorithm
 
 ## Version History
 
-(2016-X-XX)  Version 0.1.0  First release
+(2016-3-25)  Version 0.1.0  First release
 
 ## Usage
 
 Both C++ and JS implementation contain two functions. A simple version and a ranked version.
 
-#### C++
+###### C++
 ```c++
 bool fuzzy_match(const char * pattern, const char * str);
 bool fuzzy_match(const char * pattern, const char * str, int &score);
 ```
 
-#### JavaScript
+###### JavaScript
 ```javascript
 fuzzy_match_simple(pattern, str) -> bool matched
-fuzzy_match(pattern, str) -> [bool matched, int score, string formattedString
+fuzzy_match(pattern, str) -> [bool matched, int score, string formattedString]
 ```
 
 The simple version returns true if each character in the pattern appears in the test string in order.
@@ -31,13 +31,13 @@ The numerical value of score value is abstract in nature. It has no meaning othe
 ## Examples
 
 ```javascript
-fuzzy_match("ftw", "ForrestTheWoods") -> true
-fuzzy_match("fwt", "ForrestTheWoods") -> false
-fuzzy_match("gh", "GitHub") -> true
+fuzzy_match("ftw", "ForrestTheWoods") = true
+fuzzy_match("fwt", "ForrestTheWoods") = false
+fuzzy_match("gh", "GitHub") = true
 
-fuzzy_match("otw", "Power of the Wild", score) -> true, 14
-fuzzy_match("otw", "Druid of the Claw", score) -> true, -3
-fuzzy_match("otw", "Frostwolf Grunt", score) -> true, -13
+fuzzy_match("otw", "Power of the Wild", score) = true, score = 14
+fuzzy_match("otw", "Druid of the Claw", score) = true, score = -3
+fuzzy_match("otw", "Frostwolf Grunt", score) = true, score = -13
 ```
 
 ## FAQ
@@ -89,7 +89,6 @@ I don't actually know anything about JavaScript. I'm a video game developer. Not
 
 Suffice to say the JavaScript version is a lot slower. The actual fuzzy_match function seems to be about 20x to 30x slower in JS than C++. It's not nearly as fast as I would like. In my demo I capped the number of displayed results at 200 because I don't know how to update the DOM in an efficient way.
 
-
 ### Language Support
 
 I know nothing about supporting multiple languages. The C++ code operates on char const *. It makes use of functions such as tolower and toupper. That probably doesn't make sense in other languages. The JavaScript version isn't much different.
@@ -97,3 +96,7 @@ I know nothing about supporting multiple languages. The C++ code operates on cha
 I do not intend to provide better language support in C++. If you're using the C++ version then you probably have your own internal string class and you should probably port my function to make use of that. Replace tolower and toupper calls with whatever makes sense for your project and your class.
 
 For JavaScript I would consider pull requests that improve language support. It's so far outside my realm of expertise I can barely comment.
+
+### Future Work
+
+It depends on if anyone uses this. Highest priority would be JavaScript performance. After that I'm not sure. If anyone uses this I'm open to suggestions. If there are use cases where it breaks down I'd love to hear that as well. The current score calculation is more art than science.
