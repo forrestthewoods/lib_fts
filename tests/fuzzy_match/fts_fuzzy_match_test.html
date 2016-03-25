@@ -4,6 +4,7 @@
 <head>
     <title>Fuzzy String Matcher</title>
     <script type="text/javascript" src="../../code/fts_fuzzy_match.js"></script>
+    <script type="text/javascript" src="../../code/util/fts_fuzzy_match_async.js"></script>
     <script type="text/javascript" src="data/fuzzy_match_data.js"></script>
 </head>
 
@@ -31,8 +32,8 @@
     <h2>Search Pattern</h2>
     <form>
         <input id="searchPatternField" type="text" size="25" value="">
-        <button id="rematchButton" type="button">Repeat Search</button>
-        <button id="rematchManyButton" type="button">Repeat Search for 3s</button> 
+        <button id="rematchButton" type="button">Synchronous Match</button>
+        <button id="rematchManyButton" type="button">Synchronous Match for 3s</button> 
     </form>
 
     <!-- Results -->
@@ -48,7 +49,7 @@
         var resultsList = null;
         var currentDataSet = dataSets["ue4_filenames"];
 
-        var displayTimeout = null;
+        var matcher = null;
 
         onload = function() {
             patternField = document.getElementById('searchPatternField');
@@ -84,12 +85,69 @@
         };
 
         onPatternChange = function() {
-            if (displayTimeout !== null)
+            if (matcher !== null)
             {
-                clearTimeout(displayTimeout);
-                displayTimeout = null;
+                matcher.cancel();
+                matcher = null;
             }
 
+            var pattern = patternField.value;
+
+            // Data not yet loaded
+            if (currentDataSet == null)
+                return;
+
+            if (resultsList !== null)
+            {
+                // Clear the list
+                var emptyList = resultsList.cloneNode(false);
+                resultsList.parentNode.replaceChild(emptyList, resultsList);
+                resultsList = emptyList;
+            }
+
+            // Early out on empty pattern (such as startup) because JS is slow
+            if (pattern.length == 0)
+                return;
+
+            var startTime = performance.now();  
+
+            var matchFnWrapper = function(pattern, str) {
+                var result = matchFn(pattern, str);
+                if (result[0])
+                    return [result[1], result[1] + " - " + result[2]];
+                return null;
+            };
+
+            if (matchFn == fuzzy_match_simple) {
+                matchFnWrapper = function(pattern, str) {
+                    if (matchFn(pattern, str))
+                        return str;
+                    return null;
+                }
+            } 
+
+            matcher = new FTSAsyncMatcher(matchFnWrapper, pattern, currentDataSet, function(results) {
+                // Scored function requires sorting
+                if (matchFn == fuzzy_match) {
+                    results = results
+                        .sort(function(a,b) { return b[0] - a[0]; })
+                        .map(function(v) { return v[1]; });
+                }
+
+                var endTime = performance.now();
+
+                // Display number of matches and how long it took
+                resultsTime.innerText = results.length + " matches in " + (endTime - startTime).toFixed(1) + " milliseconds";
+
+                displayResults(results);
+
+                matcher = null;
+            });
+
+            matcher.start();
+        };
+
+        synchronousMatch = function() {
             var pattern = patternField.value;
 
             // Data not yet loaded
@@ -138,12 +196,7 @@
             // Display number of matches and how long it took
             resultsTime.innerText = results.length + " matches in " + (endTime - startTime).toFixed(1) + " milliseconds";
 
-            // Allow the display to be cancelled if input was gotten while processing the matches
-            displayTimeout = setTimeout(function() {
-                displayTimeout = null;
-                displayResults(results);
-            }, 1);
-
+            displayResults(results);
         };
 
         onBenchmark = function() {
@@ -152,7 +205,7 @@
             var numIterations = 0;
             do {
                 numIterations++;
-                onPatternChange();
+                synchronousMatch();
             } while (performance.now() < minimumEndTime);
 
             var duration = performance.now() - startTime;
