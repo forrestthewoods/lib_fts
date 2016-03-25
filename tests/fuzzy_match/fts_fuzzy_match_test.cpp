@@ -11,8 +11,8 @@
 #include <unordered_map>
 #include <queue>
 
-#include "..\fts_fuzzy_match.h"
-#include "..\util\fts_timer.h"
+#include "..\..\code\fts_fuzzy_match.h"
+#include "..\..\code\util\fts_timer.h"
 
 
 int main(int argc, char *argv[]) {
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 
     // Open file
     using namespace std::string_literals;
-    std::string path = argc > 1 ? argv[1] : "data/english_wordlist_2k.txt"s;
+    std::string path = argc > 1 ? argv[1] : "no file specified"s;
     std::cout << "Reading [" << path << "]" << std::endl;
     std::ifstream infile(path);
     if (!infile.good()) {

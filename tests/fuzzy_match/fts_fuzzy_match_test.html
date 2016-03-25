@@ -3,7 +3,8 @@
 
 <head>
     <title>Fuzzy String Matcher</title>
-    <script type="text/javascript" src="/lib_fts/code/fts_fuzzy_match.js"></script>
+    <script type="text/javascript" src="../../code/fts_fuzzy_match.js"></script>
+    <script type="text/javascript" src="data/fuzzy_match_data.js"></script>
 </head>
 
 <body>
@@ -12,11 +13,11 @@
     <!-- Pick Source -->
     <h2>Data Set</h2>
     <form id="sourceForm">
-      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/ue4_filenames.txt" checked> Unreal Engine 4 files<br>
-      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/hearthstone_cardlist.txt"> Hearthstone Card List<br>
-      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/magicthegathering_cardlist.txt"> Magic the Gathering Card List<br>
-      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/english_wordlist_2k.txt"> Wordlist 2k<br>
-      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="/lib_fts/data/english_wordlist_58k.txt"> Wordlist 58k
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="ue4_filenames" checked> Unreal Engine 4 Filenamess<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="hearthstone_cardlist"> Hearthstone Card List<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="magicthegathering_cardlist"> Magic the Gathering Card List<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="english_wordlist_2k"> Wordlist 2k<br>
+      <input type="radio" name="DataSource" onclick="onDataSetChange(this);" value="english_wordlist_58k"> Wordlist 58k
     </form>
 
     <!-- Pick Results Format -->
@@ -34,62 +35,70 @@
 
     <!-- Results -->
     <h2>Results</h2>
+    <p id="resultsTime"></p>
     <ul id="resultsList">
     </ul>
 
     <script>
         var patternField;
         var matchFn = fuzzy_match;
+        var resultsTime;
         var resultsList;
-        var dataSets = {};
-        var currentDataSet;
+        var currentDataSet = dataSets["ue4_filenames"];
 
         onload = function() {
             patternField = document.getElementById('searchPatternField');
             patternField.oninput = onPatternChange;
             patternField.onpropertychange = patternField.oninput;
 
+            resultsTime = document.getElementById('resultsTime');
             resultsList = document.getElementById('resultsList');
-
-            var sourceForm = document.getElementById('sourceForm');
-            for (var i = 0; i < sourceForm.elements.length; ++i)
-                if (sourceForm.elements[i].checked)
-                    loadDataFile(sourceForm.elements[i].value);
         };
 
         onPatternChange = function() {
             var pattern = patternField.value;
 
+            // Data not yet loaded
+            if (currentDataSet == null)
+                return;
+
             // Clear old results
             while (resultsList.firstChild)
                 resultsList.removeChild(resultsList.firstChild);
 
-            // Early out on empty pattern (such as startup)
+            // Early out on empty pattern (such as startup) because JS is slow
             if (pattern.length == 0)
                 return;
 
-            // Match new results            
+            // Match new results     
+            var startTime = performance.now();  
             var results = []
             for (var index = 0; index < currentDataSet.length; ++index) {
                 var str = currentDataSet[index];
                 if (matchFn == fuzzy_match_simple && matchFn(pattern, str)) {
+                    // Simple function pushes string into results
                     results.push(str);
                 }
                 else if (matchFn == fuzzy_match) {
+                    // Score function pushes [score, "score - string"] into result
                     var result = matchFn(pattern, str);
                     if (result[0])
                         results.push([result[1], result[1] + " - " + result[2]]);
                 }
             }
 
-            // Sort and map results which are scored
+            // Scored function requires sorting
             if (matchFn == fuzzy_match) {
                 results = results
                     .sort(function(a,b) { return b[0] - a[0]; })
                     .map(function(v) { return v[1]; });
             }
+            var endTime = performance.now();
 
-            // Because adding too many elements is catastrophically slow
+            // Display number of matches and how long it took
+            resultsTime.innerText = results.length + " matches in " + (endTime - startTime) + " milliseconds";
+
+            // Because adding too many elements is catastrophically slow because HTML is dumb
             var max_entries = 200;
 
             // Create HTML elements for results
@@ -106,26 +115,10 @@
         }
 
         onDataSetChange = function(radio) {
-            var filename = radio.value;
-            if (dataSets[filename] == null) {
-                loadDataFile(filename);
-            }
-            else {
-                currentDataSet = dataSets[filename];
-                onPatternChange();
-            }
+            var setname = radio.value;
+            currentDataSet = dataSets[setname];
+            onPatternChange();
         };
-
-        loadDataFile = function(filename) {
-            var client = new XMLHttpRequest();
-            client.open('GET', filename, true);
-            client.onreadystatechange = function() {
-                dataSets[filename] = client.responseText.split("\n");
-                currentDataSet = dataSets[filename];
-                onPatternChange();
-            }
-            client.send();
-        }
 
     </script>
 </body>

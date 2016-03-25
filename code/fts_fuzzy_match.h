@@ -4,6 +4,7 @@
 //   recognized, you are granted a perpetual, irrevocable license to copy,
 //   distribute, and modify this file as you see fit.
 
+// VERSION 0.1.0
 
 #ifndef FTS_FUZZY_MATCH_H
 #define FTS_FUZZY_MATCH_H
@@ -47,14 +48,33 @@ namespace fts {
         bool prevLower = false;
         bool prevSeparator = true;                  // true so if first letter match gets separator bonus
 
+        // Use "best" matched letter if multiple string letters match the pattern
+        char const * bestLetter = nullptr;
+        int bestLetterScore = 0;
+
         // Loop over strings
-        while (*patternIter != '\0' && *strIter != '\0') 
+        while (*strIter != '\0') 
         {
             const char patternLetter = *patternIter;
             const char strLetter = *strIter;
 
-            if (tolower(patternLetter) == tolower(strLetter))
+            bool nextMatch = *patternIter != '\0' && tolower(patternLetter) == tolower(strLetter);
+            bool rematch = bestLetter && tolower(*bestLetter) == tolower(strLetter);
+
+            bool advanced = nextMatch && bestLetter;
+            bool patternRepeat = bestLetter && patternIter != '\0' && tolower(*bestLetter) == tolower(patternLetter);
+
+            if (advanced || patternRepeat) 
             {
+                score += bestLetterScore;
+                bestLetter = nullptr;
+                bestLetterScore = 0;
+            }
+
+            if (nextMatch || rematch)
+            {
+                int newScore = 0;
+
                 // Apply penalty for each letter before the first pattern match
                 // Note: std::max because penalties are negative values. So max is smallest penalty.
                 if (patternIter == pattern)
@@ -62,22 +82,32 @@ namespace fts {
                     int count = int(strIter - str);
                     int penalty = std::max(leading_letter_penalty * count, max_leading_letter_penalty); 
                     score += penalty;
-                }
+                } 
 
                 // Apply bonus for consecutive bonuses
                 if (prevMatched)
-                    score += adjacency_bonus;
+                    newScore += adjacency_bonus;
 
                 // Apply bonus for matches after a separator
                 if (prevSeparator)
-                    score += separator_bonus;
+                    newScore += separator_bonus;
 
                 // Apply bonus across camel case boundaries
                 if (prevLower && isupper(strLetter))
-                    score += camel_bonus;
+                    newScore += camel_bonus;
+
+                // Update pattern iter IFF the next pattern letter was matched
+                if (nextMatch)
+                    ++patternIter;
+
+                // Update best letter in str which may be for a "next" letter or a rematch
+                if (newScore >= bestLetterScore) 
+                {
+                    bestLetter = strIter;
+                    bestLetterScore = newScore;
+                }
 
                 prevMatched = true;
-                ++patternIter;
             }
             else
             {
@@ -91,6 +121,10 @@ namespace fts {
 
             ++strIter;
         }
+
+        // Apply score for last match
+        if (bestLetter) 
+            score += bestLetterScore;
 
         // Did not match full pattern
         if (*patternIter != '\0')

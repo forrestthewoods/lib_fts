@@ -1,10 +1,10 @@
 .vs
+bin
+build
 *.opensdf
 *.filters
 *.sdf
 *.opensdf
 *.sdf
 *.suo
-Debug
-Release
-Blackjack
+*.user

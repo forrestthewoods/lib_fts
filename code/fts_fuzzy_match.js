@@ -4,6 +4,7 @@
 //   recognized, you are granted a perpetual, irrevocable license to copy,
 //   distribute, and modify this file as you see fit.
 
+// VERSION 0.1.0
 
 // Returns true if each character in pattern is found sequentially within str
 function fuzzy_match_simple(pattern, str) {
@@ -49,14 +50,34 @@ function fuzzy_match(pattern, str) {
     var prevLower = false;
     var prevSeparator = true;       // true so if first letter match gets separator bonus
 
-    var formattedStr = "";
+    // Use "best" matched letter if multiple string letters match the pattern
+    var bestLetter = null;
+    var bestLetterIdx = null;
+    var bestLetterScore = 0;
+
+    var matchedIndices = [];
 
     // Loop over strings
-    while (patternIdx != patternLength && strIdx != strLength) {
-        var patternChar = pattern.charAt(patternIdx);
+    while (strIdx != strLength) {
+        var patternChar = patternIdx != patternLength ? pattern.charAt(patternIdx) : null;
         var strChar = str.charAt(strIdx);
 
-        if (patternChar.toLowerCase() == strChar.toLowerCase()) {
+        var nextMatch = patternChar && patternChar.toLowerCase() == strChar.toLowerCase();
+        var rematch = bestLetter && bestLetter.toLowerCase() == strChar.toLowerCase();
+
+        var advanced = nextMatch && bestLetter;
+        var patternRepeat = bestLetter && patternChar && bestLetter.toLowerCase() == patternChar.toLowerCase();
+        if (advanced || patternRepeat) {
+            score += bestLetterScore;
+            matchedIndices.push(bestLetterIdx);
+            bestLetter = null;
+            bestLetterIdx = null;
+            bestLetterScore = 0;
+        }
+
+        if (nextMatch || rematch) {
+            var newScore = 0;
+
             // Apply penalty for each letter before the first pattern match
             // Note: std::max because penalties are negative values. So max is smallest penalty.
             if (patternIdx == 0) {
@@ -66,21 +87,28 @@ function fuzzy_match(pattern, str) {
 
             // Apply bonus for consecutive bonuses
             if (prevMatched)
-                score += adjacency_bonus;
+                newScore += adjacency_bonus;
 
             // Apply bonus for matches after a separator
             if (prevSeparator)
-                score += separator_bonus;
+                newScore += separator_bonus;
 
-            // Apply bonus across camel case boundaries
-            if (prevLower && strChar == strChar.toUpperCase())
-                score += camel_bonus;
+            // Apply bonus across camel case boundaries. Includes "clever" isLetter check.
+            if (prevLower && strChar == strChar.toUpperCase() && strChar.toLowerCase() != strChar.toUpperCase())
+                newScore += camel_bonus;
 
-            // Formatted string; wrap matched characters in bold
-            formattedStr += "<b>" + strChar + "</b>";
+            // Update patter index IFF the next pattern letter was matched
+            if (nextMatch)
+                ++patternIdx;
+
+            // Update best letter in str which may be for a "next" letter or a "rematch"
+            if (newScore >= bestLetterScore) {
+                bestLetter = strChar;
+                bestLetterIdx = strIdx;
+                bestLetterScore = newScore;
+            }
 
             prevMatched = true;
-            ++patternIdx;
         }
         else {
             // Append unmatch characters
@@ -90,14 +118,30 @@ function fuzzy_match(pattern, str) {
             prevMatched = false;
         }
 
-        prevLower = strChar == strChar.toLowerCase();
+        // Includes "clever" isLetter check.
+        prevLower = strChar == strChar.toLowerCase() && strChar.toLowerCase() != strChar.toUpperCase();
         prevSeparator = strChar == '_' || strChar == ' ';
 
         ++strIdx;
     }
 
-    // Finish out formatted string after last pattern matched
-    formattedStr += str.substr(strIdx, strLength - strIdx);
+    // Apply score for last match
+    if (bestLetter) {
+        score += bestLetterScore;
+        matchedIndices.push(bestLetterIdx);
+    }
 
-    return [patternIdx == patternLength, score, formattedStr];
+    // Finish out formatted string after last pattern matched
+    // Build formated string based on matched letters
+    var formattedStr = "";
+    var lastIdx = 0;
+    for (var i = 0; i < matchedIndices.length; ++i) {
+        var idx = matchedIndices[i];
+        formattedStr += str.substr(lastIdx, idx - lastIdx) + "<b>" + str.charAt(idx) + "</b>";
+        lastIdx = idx + 1;
+    }
+    formattedStr += str.substr(lastIdx, str.length - lastIdx);
+
+    var matched = patternIdx == patternLength;
+    return [matched, score, formattedStr];
 }
