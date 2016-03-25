@@ -45,8 +45,10 @@
         var patternField;
         var matchFn = fuzzy_match;
         var resultsTime;
-        var resultsList;
+        var resultsList = null;
         var currentDataSet = dataSets["ue4_filenames"];
+
+        var displayTimeout = null;
 
         onload = function() {
             patternField = document.getElementById('searchPatternField');
@@ -63,23 +65,52 @@
             resultsList = document.getElementById('resultsList');
         };
 
+        displayResults = function(results) {
+            var newResultsList = resultsList.cloneNode(false);
+
+            // Because adding too many elements is catastrophically slow because HTML is dumb
+            var max_entries = 200;
+
+            // Create HTML elements for results
+            for (index = 0; index < results.length && index < max_entries; ++index) {
+                var li = document.createElement('li');
+                li.innerHTML = results[index];
+                newResultsList.appendChild(li);
+            }
+
+            // Replace the old results from the DOM.
+            resultsList.parentNode.replaceChild(newResultsList, resultsList);
+            resultsList = newResultsList;
+        };
+
         onPatternChange = function() {
+            if (displayTimeout !== null)
+            {
+                clearTimeout(displayTimeout);
+                displayTimeout = null;
+            }
+
             var pattern = patternField.value;
 
             // Data not yet loaded
             if (currentDataSet == null)
                 return;
 
-            // Clear old results
-            while (resultsList.firstChild)
-                resultsList.removeChild(resultsList.firstChild);
+            if (resultsList !== null)
+            {
+                // Clear the list
+                var emptyList = resultsList.cloneNode(false);
+                resultsList.parentNode.replaceChild(emptyList, resultsList);
+                resultsList = emptyList;
+            }
 
             // Early out on empty pattern (such as startup) because JS is slow
             if (pattern.length == 0)
                 return;
 
-            // Match new results     
             var startTime = performance.now();  
+
+            // Match new results
             var results = []
             for (var index = 0; index < currentDataSet.length; ++index) {
                 var str = currentDataSet[index];
@@ -101,20 +132,18 @@
                     .sort(function(a,b) { return b[0] - a[0]; })
                     .map(function(v) { return v[1]; });
             }
+
             var endTime = performance.now();
 
             // Display number of matches and how long it took
-            resultsTime.innerText = results.length + " matches in " + (endTime - startTime) + " milliseconds";
+            resultsTime.innerText = results.length + " matches in " + (endTime - startTime).toFixed(1) + " milliseconds";
 
-            // Because adding too many elements is catastrophically slow because HTML is dumb
-            var max_entries = 200;
+            // Allow the display to be cancelled if input was gotten while processing the matches
+            displayTimeout = setTimeout(function() {
+                displayTimeout = null;
+                displayResults(results);
+            }, 1);
 
-            // Create HTML elements for results
-            for (index = 0; index < results.length && index < max_entries; ++index) {
-                var li = document.createElement('li');
-                li.innerHTML = results[index];
-                resultsList.appendChild(li);
-            }
         };
 
         onBenchmark = function() {
