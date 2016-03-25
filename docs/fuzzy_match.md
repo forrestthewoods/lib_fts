@@ -10,12 +10,13 @@ A Sublime Text inspired fuzzy match algorithm
 
 Both C++ and JS implementation contain two functions. A simple version and a ranked version.
 
-**C++**
+#### C++
 ```bool fuzzy_match(const char * pattern, const char * str);
 bool fuzzy_match(const char * pattern, const char * str, int &score);```
 
-**JavaScript**
+#### JavaScript
 ```fuzzy_match_simple(pattern, str) -> bool matched
+
 fuzzy_match(pattern, str) -> [bool matched, int score, string formattedString]```
 
 The simple version returns true if each character in the pattern appears in the test string in order.

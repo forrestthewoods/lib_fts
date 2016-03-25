@@ -3,10 +3,10 @@ lib_fts
 
 single-file public domain libraries
 
-library | docs | description
+library | documentation | description
 --------------------- | -------- | ------------- | --------------------------------
-**[fts_fuzzy_match.h](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h)** | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md) blog | SublimeText inspired fuzzy string matching in C++
-**[fts_fuzzy_match.js](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js)** | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md) blog demo | Fuzzy string matching in JavaScript
+**[fts_fuzzy_match.h](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h)** | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md)  blog | SublimeText inspired fuzzy string matching in C++
+**[fts_fuzzy_match.js](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js)** | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md)  blog  demo | Fuzzy string matching in JavaScript
 
 
 FAQ
