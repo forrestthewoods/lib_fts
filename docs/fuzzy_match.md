@@ -11,13 +11,16 @@ A Sublime Text inspired fuzzy match algorithm
 Both C++ and JS implementation contain two functions. A simple version and a ranked version.
 
 #### C++
-```bool fuzzy_match(const char * pattern, const char * str);
-bool fuzzy_match(const char * pattern, const char * str, int &score);```
+```c++
+bool fuzzy_match(const char * pattern, const char * str);
+bool fuzzy_match(const char * pattern, const char * str, int &score);
+```
 
 #### JavaScript
-```fuzzy_match_simple(pattern, str) -> bool matched
-
-fuzzy_match(pattern, str) -> [bool matched, int score, string formattedString]```
+```javascript
+fuzzy_match_simple(pattern, str) -> bool matched
+fuzzy_match(pattern, str) -> [bool matched, int score, string formattedString
+```
 
 The simple version returns true if each character in the pattern appears in the test string in order.
 
@@ -27,6 +30,7 @@ The numerical value of score value is abstract in nature. It has no meaning othe
 
 ## Examples
 
+```javascript
 fuzzy_match("ftw", "ForrestTheWoods") -> true
 fuzzy_match("fwt", "ForrestTheWoods") -> false
 fuzzy_match("gh", "GitHub") -> true
@@ -34,7 +38,7 @@ fuzzy_match("gh", "GitHub") -> true
 fuzzy_match("otw", "Power of the Wild", score) -> true, 14
 fuzzy_match("otw", "Druid of the Claw", score) -> true, -3
 fuzzy_match("otw", "Frostwolf Grunt", score) -> true, -13
-
+```
 
 ## FAQ
 
