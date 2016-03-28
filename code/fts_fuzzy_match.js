@@ -145,3 +145,69 @@ function fuzzy_match(pattern, str) {
     var matched = patternIdx == patternLength;
     return [matched, score, formattedStr];
 }
+
+
+// Strictly optional utility to help make using fts_fuzzy_match easier for large data sets
+// Uses setTimeout to process matches before a maximum amount of time before sleeping
+//
+// To use:
+//      var asyncMatcher = new fts_fuzzy_match(fuzzy_match, "fts", "ForrestTheWoods", 
+//                                              function(results) { console.log(results); });
+//      asyncMatcher.start();
+//
+function fts_fuzzy_match_async(matchFn, pattern, dataSet, onComplete) {
+    var ITEMS_PER_CHECK = 1000;         // performance.now can be very slow depending on platform
+
+    var max_ms_per_frame = 1000.0/30.0; // 30FPS
+    var dataIndex = 0;
+    var results = [];
+    var resumeTimeout = null;
+
+    // Perform matches for at most max_ms
+    function step() {
+        clearTimeout(resumeTimeout);
+        resumeTimeout = null;
+
+        var stopTime = performance.now() + max_ms_per_frame;
+
+        for (; dataIndex < dataSet.length; ++dataIndex) {
+            if ((dataIndex % ITEMS_PER_CHECK) == 0) {
+                if (performance.now() > stopTime) {
+                    resumeTimeout = setTimeout(step, 1);
+                    return;
+                }
+            }
+
+            var str = dataSet[dataIndex];
+            var result = matchFn(pattern, str);
+            
+            // A little gross because fuzzy_match_simple and fuzzy_match return different things
+            if (matchFn == fuzzy_match_simple && result == true)
+                results.push(str);
+            else if (matchFn == fuzzy_match && result[0] == true)
+                results.push(result);
+        }
+
+        onComplete(results);
+        return null;
+    };
+
+    // Abort current process
+    this.cancel = function() {
+        if (resumeTimeout !== null)
+            clearTimeout(resumeTimeout);
+    };
+
+    // Must be called to start matching.
+    // I tried to make asyncMatcher auto-start via "var resumeTimeout = step();" 
+    // However setTimout behaving in an unexpected fashion as onComplete insisted on triggering twice.
+    this.start = function() {
+        step();
+    }
+
+    // Process full list. Blocks script execution until complete
+    this.flush = function() {
+        max_ms_per_frame = Infinity;
+        step();
+    }
+};

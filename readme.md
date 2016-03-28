@@ -29,9 +29,13 @@ Several! C++ is the baseline. Multiple language implementations are provided whe
 #### Why C++ and not C?
 Because "proper" open source C code is full of gross macros and defines. I'd rather write simple code in a C++ namespace and call it a day.
 
-My opinion is that portability can be achieved in two ways. One, include a dozen defines and macros to let users turn knobs on or off in a million permutations. Two, provide the simplest possible implementation that can be trivially modified by users to meet their specific needs. I prefer the second.
+My opinion is that portability can be achieved in two ways. One, include a dozen defines and macros to let users turn knobs on or off resulting in a million permutations. Two, provide the simplest possible implementation that can be trivially modified by users to meet their specific needs. I prefer writing and using the second.
 
-There are also cases where user modification is to be expected. For example a string processing algorithm or 3d math. Users can and should use their own existing string and vector/matrix libraries. In such cases I prefer to provide basic implementations that can be easily modified by users to fit the mold of their project. I believe that to be better than crufty, hard to read macro schemes.
+There are also cases where user modification is to be expected. For example a string processing algorithm or any 3d math. Users can and should use their existing string and vector/matrix libraries. In such cases I prefer to provide basic implementations that can be easily modified by users to fit the mold of their project. I believe that to be better than crufty, inscrutible macro schemes.
 
 #### Is C++11 used?
-Test code is full of C++11, STL, and all kinds of icky things. Library C++ files are written very near to C.
+Core libs linked on this page are written in C++ but very near to C. 
+
+Test code is full of C++11, STL, and all kinds of icky things. Tread with caution!
+
+Files in code/util are fully independent but not significant enough to warrant root status. They may be C++ oriented and may use C++11/14 features.

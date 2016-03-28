@@ -4,7 +4,6 @@
 <head>
     <title>Fuzzy String Matcher</title>
     <script type="text/javascript" src="../../code/fts_fuzzy_match.js"></script>
-    <script type="text/javascript" src="../../code/util/fts_fuzzy_match_async.js"></script>
     <script type="text/javascript" src="data/fuzzy_match_data.js"></script>
 </head>
 
@@ -32,8 +31,6 @@
     <h2>Search Pattern</h2>
     <form>
         <input id="searchPatternField" type="text" size="25" value="">
-        <button id="rematchButton" type="button">Synchronous Match</button>
-        <button id="rematchManyButton" type="button">Synchronous Match for 3s</button> 
     </form>
 
     <!-- Results -->
@@ -49,18 +46,13 @@
         var resultsList = null;
         var currentDataSet = dataSets["ue4_filenames"];
 
-        var matcher = null;
+        var asyncMatcher = null;
 
         onload = function() {
+            // Initialize document element references
             patternField = document.getElementById('searchPatternField');
             patternField.oninput = onPatternChange;
             patternField.onpropertychange = patternField.oninput;
-
-            rematchButton = document.getElementById('rematchButton');
-            rematchButton.onclick = onPatternChange;
-            
-            rematchManyButton = document.getElementById('rematchManyButton');
-            rematchManyButton.onclick = onBenchmark;
 
             resultsTime = document.getElementById('resultsTime');
             resultsList = document.getElementById('resultsList');
@@ -69,8 +61,8 @@
         displayResults = function(results) {
             var newResultsList = resultsList.cloneNode(false);
 
-            // Because adding too many elements is catastrophically slow because HTML is dumb
-            var max_entries = 200;
+            // Because adding too many elements is catastrophically slow because HTML is slow
+            var max_entries = 500;
 
             // Create HTML elements for results
             for (index = 0; index < results.length && index < max_entries; ++index) {
@@ -85,10 +77,11 @@
         };
 
         onPatternChange = function() {
-            if (matcher !== null)
-            {
-                matcher.cancel();
-                matcher = null;
+
+            // Clear existing async match if it exists
+            if (asyncMatcher !== null) {
+                asyncMatcher.cancel();
+                asyncMatcher = null;
             }
 
             var pattern = patternField.value;
@@ -111,27 +104,12 @@
 
             var startTime = performance.now();  
 
-            var matchFnWrapper = function(pattern, str) {
-                var result = matchFn(pattern, str);
-                if (result[0])
-                    return [result[1], result[1] + " - " + result[2]];
-                return null;
-            };
-
-            if (matchFn == fuzzy_match_simple) {
-                matchFnWrapper = function(pattern, str) {
-                    if (matchFn(pattern, str))
-                        return str;
-                    return null;
-                }
-            } 
-
-            matcher = new FTSAsyncMatcher(matchFnWrapper, pattern, currentDataSet, function(results) {
+            asyncMatcher = new fts_fuzzy_match_async(matchFn, pattern, currentDataSet, function(results) {
                 // Scored function requires sorting
                 if (matchFn == fuzzy_match) {
                     results = results
-                        .sort(function(a,b) { return b[0] - a[0]; })
-                        .map(function(v) { return v[1]; });
+                        .sort(function(a,b) { return b[1] - a[1]; })
+                        .map(function(v) { return v[1] + " - " + v[2]; });
                 }
 
                 var endTime = performance.now();
@@ -141,76 +119,9 @@
 
                 displayResults(results);
 
-                matcher = null;
+                asyncMatcher = null;
             });
-
-            matcher.start();
-        };
-
-        synchronousMatch = function() {
-            var pattern = patternField.value;
-
-            // Data not yet loaded
-            if (currentDataSet == null)
-                return;
-
-            if (resultsList !== null)
-            {
-                // Clear the list
-                var emptyList = resultsList.cloneNode(false);
-                resultsList.parentNode.replaceChild(emptyList, resultsList);
-                resultsList = emptyList;
-            }
-
-            // Early out on empty pattern (such as startup) because JS is slow
-            if (pattern.length == 0)
-                return;
-
-            var startTime = performance.now();  
-
-            // Match new results
-            var results = []
-            for (var index = 0; index < currentDataSet.length; ++index) {
-                var str = currentDataSet[index];
-                if (matchFn == fuzzy_match_simple && matchFn(pattern, str)) {
-                    // Simple function pushes string into results
-                    results.push(str);
-                }
-                else if (matchFn == fuzzy_match) {
-                    // Score function pushes [score, "score - string"] into result
-                    var result = matchFn(pattern, str);
-                    if (result[0])
-                        results.push([result[1], result[1] + " - " + result[2]]);
-                }
-            }
-
-            // Scored function requires sorting
-            if (matchFn == fuzzy_match) {
-                results = results
-                    .sort(function(a,b) { return b[0] - a[0]; })
-                    .map(function(v) { return v[1]; });
-            }
-
-            var endTime = performance.now();
-
-            // Display number of matches and how long it took
-            resultsTime.innerText = results.length + " matches in " + (endTime - startTime).toFixed(1) + " milliseconds";
-
-            displayResults(results);
-        };
-
-        onBenchmark = function() {
-            var startTime = performance.now();  
-            var minimumEndTime = startTime + 3000;
-            var numIterations = 0;
-            do {
-                numIterations++;
-                synchronousMatch();
-            } while (performance.now() < minimumEndTime);
-
-            var duration = performance.now() - startTime;
-            var averageDuration = duration / numIterations;
-            resultsTime.innerText = "Matched in " + averageDuration.toFixed(1) + " milliseconds (average across " + numIterations + " matches)";
+            asyncMatcher.start();
         };
 
         onFormatChange = function(radio) {

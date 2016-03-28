@@ -97,6 +97,10 @@ I do not intend to provide better language support in C++. If you're using the C
 
 For JavaScript I would consider pull requests that improve language support. It's so far outside my realm of expertise I can barely comment.
 
+### Why is there a simple version?
+
+I included the simple version because it's an easy drop-in replacement. If your project has user input sub-string matching then simple fuzzy match could be a one line change. If users find that to be an improvement then they may be more likely to take the time to implement the more advanced version.
+
 ### Future Work
 
 It depends on if anyone uses this. Highest priority would be JavaScript performance. After that I'm not sure. If anyone uses this I'm open to suggestions. If there are use cases where it breaks down I'd love to hear that as well. The current score calculation is more art than science.
