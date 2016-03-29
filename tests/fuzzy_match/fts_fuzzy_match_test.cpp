@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     auto countMatches = [&dictionary](std::string const & pattern) -> int { 
         int matches = 0;
         for (auto && entry : dictionary)
-            if (fts::fuzzy_match(pattern.c_str(), entry.c_str()) == 1)
+            if (fts::fuzzy_match(pattern.c_str(), entry.c_str()))
                 ++matches;
 
         return matches; 
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     auto alphabeticalMatches = [&dictionary](std::string const & pattern) {
         std::vector<std::string const *> matches;
         for (auto && entry : dictionary)
-            if (fts::fuzzy_match(pattern.c_str(), entry.c_str()) == 1)
+            if (fts::fuzzy_match(pattern.c_str(), entry.c_str()))
                 matches.push_back(&entry);
 
         return matches;

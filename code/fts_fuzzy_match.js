@@ -52,6 +52,7 @@ function fuzzy_match(pattern, str) {
 
     // Use "best" matched letter if multiple string letters match the pattern
     var bestLetter = null;
+    var bestLower = null;
     var bestLetterIdx = null;
     var bestLetterScore = 0;
 
@@ -62,15 +63,20 @@ function fuzzy_match(pattern, str) {
         var patternChar = patternIdx != patternLength ? pattern.charAt(patternIdx) : null;
         var strChar = str.charAt(strIdx);
 
-        var nextMatch = patternChar && patternChar.toLowerCase() == strChar.toLowerCase();
-        var rematch = bestLetter && bestLetter.toLowerCase() == strChar.toLowerCase();
+        var patternLower = patternChar != null ? patternChar.toLowerCase() : null;
+        var strLower = strChar.toLowerCase();
+        var strUpper = strChar.toUpperCase();
+
+        var nextMatch = patternChar && patternLower == strLower;
+        var rematch = bestLetter && bestLower == strLower;
 
         var advanced = nextMatch && bestLetter;
-        var patternRepeat = bestLetter && patternChar && bestLetter.toLowerCase() == patternChar.toLowerCase();
+        var patternRepeat = bestLetter && patternChar && bestLower == patternLower;
         if (advanced || patternRepeat) {
             score += bestLetterScore;
             matchedIndices.push(bestLetterIdx);
             bestLetter = null;
+            bestLower = null;
             bestLetterIdx = null;
             bestLetterScore = 0;
         }
@@ -94,7 +100,7 @@ function fuzzy_match(pattern, str) {
                 newScore += separator_bonus;
 
             // Apply bonus across camel case boundaries. Includes "clever" isLetter check.
-            if (prevLower && strChar == strChar.toUpperCase() && strChar.toLowerCase() != strChar.toUpperCase())
+            if (prevLower && strChar == strUpper && strLower != strUpper)
                 newScore += camel_bonus;
 
             // Update patter index IFF the next pattern letter was matched
@@ -103,7 +109,13 @@ function fuzzy_match(pattern, str) {
 
             // Update best letter in str which may be for a "next" letter or a "rematch"
             if (newScore >= bestLetterScore) {
+
+                // Apply penalty for now skipped letter
+                if (bestLetter != null)
+                    score += unmatched_letter_penalty;
+
                 bestLetter = strChar;
+                bestLower = bestLetter.toLowerCase();
                 bestLetterIdx = strIdx;
                 bestLetterScore = newScore;
             }
@@ -119,7 +131,7 @@ function fuzzy_match(pattern, str) {
         }
 
         // Includes "clever" isLetter check.
-        prevLower = strChar == strChar.toLowerCase() && strChar.toLowerCase() != strChar.toUpperCase();
+        prevLower = strChar == strLower && strLower != strUpper;
         prevSeparator = strChar == '_' || strChar == ' ';
 
         ++strIdx;
