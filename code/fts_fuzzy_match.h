@@ -49,7 +49,7 @@ namespace fts {
         bool prevSeparator = true;                  // true so if first letter match gets separator bonus
 
         // Use "best" matched letter if multiple string letters match the pattern
-        char const * bestLetter = nullptr;
+        char const * bestLetter = NULL;
         int bestLetterScore = 0;
 
         // Loop over strings
@@ -67,7 +67,7 @@ namespace fts {
             if (advanced || patternRepeat) 
             {
                 score += bestLetterScore;
-                bestLetter = nullptr;
+                bestLetter = NULL;
                 bestLetterScore = 0;
             }
 
@@ -80,7 +80,10 @@ namespace fts {
                 if (patternIter == pattern)
                 {
                     int count = int(strIter - str);
-                    int penalty = std::max(leading_letter_penalty * count, max_leading_letter_penalty); 
+                    int penalty = leading_letter_penalty * count;
+                    if (penalty < max_leading_letter_penalty)
+                        penalty = max_leading_letter_penalty;
+
                     score += penalty;
                 } 
 
@@ -104,7 +107,7 @@ namespace fts {
                 if (newScore >= bestLetterScore) 
                 {
                     // Apply penalty for now skipped letter
-                    if (bestLetter != nullptr)
+                    if (bestLetter != NULL)
                         score += unmatched_letter_penalty;
 
                     bestLetter = strIter;
