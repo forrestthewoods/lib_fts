@@ -20,9 +20,7 @@ No convoluted build systems. No dependency rabbit holes. Easy to read, easy to u
 #### What license?
 All source code is embedded with the following license:
 
-//   This software is dual-licensed to the public domain and under the following
-//   license: you are granted a perpetual, irrevocable license to copy, modify,
-//   publish, and distribute this file as you see fit.
+> This software is dual-licensed to the public domain and under the following license: you are granted a perpetual, irrevocable license to copy, modify, publish, and distribute this file as you see fit.
 
 #### What is FTS?
 My initials; Forrest Thomas Smith.
