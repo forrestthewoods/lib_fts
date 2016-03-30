@@ -4,15 +4,15 @@
 //   license: you are granted a perpetual, irrevocable license to copy, modify,
 //   publish, and distribute this file as you see fit.
 
+#include "..\..\code\fts_fuzzy_match.h"
+#include "..\..\code\util\fts_timer.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <unordered_map>
 #include <queue>
-
-#include "..\..\code\fts_fuzzy_match.h"
-#include "..\..\code\util\fts_timer.h"
 
 
 int main(int argc, char *argv[]) {
