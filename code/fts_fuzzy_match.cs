@@ -11,8 +11,8 @@ using System.Collections.Generic;
 
 namespace fts
 {
-    public static class FuzzyMatcher
-    {
+	public static class FuzzyMatcher
+	{
 		/// <summary>
 		/// Does a fuzzy search for a pattern within a string.
 		/// </summary>
@@ -20,7 +20,7 @@ namespace fts
 		/// <param name="str">The string to search for the pattern in.</param>
 		/// <returns>true if each character in pattern is found sequentially within str; otherwise, false.</returns>
 		public static bool FuzzyMatch(string pattern, string str)
-	    {
+		{
 			var patternIdx = 0;
 			var strIdx = 0;
 			var patternLength = pattern.Length;
@@ -164,5 +164,5 @@ namespace fts
 			outScore = score;
 			return patternIdx == patternLength;
 		}
-    }
+	}
 }

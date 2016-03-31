@@ -8,12 +8,18 @@ A [Sublime Text](https://www.sublimetext.com/) inspired fuzzy match algorithm
 
 ## Usage
 
-Both C++ and JS implementation contain two functions. A simple version and a ranked version.
+The C++, C#, and JS implementations each contain two functions. A simple version and a ranked version.
 
 ###### C++
 ```c++
 bool fuzzy_match(const char * pattern, const char * str);
 bool fuzzy_match(const char * pattern, const char * str, int &score);
+```
+
+###### C# 
+```c#
+bool FuzzyMatch(string pattern, string str);
+bool FuzzyMatch(string pattern, string str, out int score);
 ```
 
 ###### JavaScript
@@ -24,7 +30,7 @@ fuzzy_match(pattern, str) -> [bool matched, int score, string formattedString]
 
 The simple version returns true if each character in the pattern appears in the test string in order.
 
-The scored version does the same but also provides an integer score. The JavaScript function with score also provides a formatted string. If there is a macth it is the input string with each matched character markeded up with a \<b\> tag.
+The scored version does the same but also provides an integer score. The JavaScript function with score also provides a formatted string. If there is a match it is the input string with each matched character markeded up with a \<b\> tag.
 
 The numerical value of score value is abstract in nature. It has no meaning other than higher is better. Scores ranges depend on the search pattern. Longer search patterns have higher theoretical max scores. Therefore scores can only be compared when they came from the same pattern.
 
