@@ -66,15 +66,16 @@ int main(int argc, char *argv[]) {
     while (std::getline(infile, entry))
         dictionary.push_back(std::move(entry));
 
-    float time = stopwatch.elapsedMilliseconds();
+    auto time = stopwatch.elapsedMilliseconds();
     std::cout << "Read [" << dictionary.size() << "] entries in " << time << "ms" << std::endl << std::endl;
 
 
     // Input Loop
     std::string option;
     std::string pattern;
-
-    while (1) {
+    
+    bool done = false;
+    while (!done) {
         std::cout << "1. Count Matches" << std::endl;
         std::cout << "2. Print Matches (Alphabetical)" << std::endl;
         std::cout << "3. Print Matches (By Score)" << std::endl;
@@ -121,7 +122,7 @@ int main(int argc, char *argv[]) {
         }
         else if (option == "4") {
             // Quit
-            break;
+            done = true;
         }
     }
 }
