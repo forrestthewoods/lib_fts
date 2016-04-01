@@ -8,7 +8,7 @@ lib | lang | doc | desc
 fts_fuzzy_match | [C++](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h), [JavaScript](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js) | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md), [blog](https://blog.forrestthewoods.com/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb#.m9cmfqknc), [demo](https://s3-us-west-2.amazonaws.com/forrestthewoods.staticweb/lib_fts/tests/fuzzy_match/fts_fuzzy_match_test.html) | Fuzzy string matching inspired by Sublime Text
 
 FAQ
----
+===
 
 #### What is lib_fts?
 My personal take on [STB](https://github.com/nothings/stb) style file libraries. Small librabries in one or two files that can be trivially drag'n'dropped into an existing project.
@@ -31,7 +31,7 @@ Because "proper" open source C code is full of gross macros and defines. I'd rat
 
 Open source, cross-platform C often include a dozen defines and macros to let users turn knobs on or off resulting in a million permutations. An alternative solution is to provide the simplest possible implementation that can trivially modified by users to meet their specific needs. I prefer both writing and using the second.
 
-There are some where user modification is to be expected. For example a string processing algorithm or anything involving 3d math. Users can and should use their existing string or vector/matrix libraries. In such cases I prefer to provide basic implementations that be easily modified by the user. I believe that to be better than crufty, inscrutible macro schemes.
+There are some cases where user modification is expected. For example, a string processing algorithm or anything involving 3d math. Users can and should use their existing string or vector/matrix libraries. In such cases I prefer to provide basic implementations that be easily modified by the user. I believe that to be better than crufty, inscrutible macro schemes.
 
 #### Is C++11 used?
 Core libs linked on this page are written in C++ but very near to C. 
