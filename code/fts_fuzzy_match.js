@@ -111,8 +111,9 @@ function fuzzy_match(pattern, str) {
             if (newScore >= bestLetterScore) {
 
                 // Apply penalty for now skipped letter
-                if (bestLetter != null)
+                if (bestLetter != null) {
                     score += unmatched_letter_penalty;
+                }
 
                 bestLetter = strChar;
                 bestLower = bestLetter.toLowerCase();
