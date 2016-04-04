@@ -7,6 +7,14 @@ lib | lang | doc | desc
 ---- | --- | --- | ---
 fts_fuzzy_match | [C++](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h), [JavaScript](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js) | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md), [blog](https://blog.forrestthewoods.com/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb#.m9cmfqknc), [demo](https://s3-us-west-2.amazonaws.com/forrestthewoods.staticweb/lib_fts/tests/fuzzy_match/fts_fuzzy_match_test.html) | Fuzzy string matching inspired by Sublime Text
 
+#### Ports
+
+User ports are externally hosted. I can not guarantee they are correct, up to date, or non-hostile. User beware!
+
+lib | lang
+---| ---
+fts_fuzzy_match | [C#](https://github.com/CDillinger/lib_fts/blob/7b9f6783f74b4c31d8a09e5306b8e5558a28f67a/code/fts_fuzzy_match.cs), [F#](https://github.com/xavierzwirtz/lib_fts/blob/939fc8730334a97156ca1e0791ae11250154a1f4/code/fts_fuzzy_match.fsx), [PHP](https://github.com/detectiveYarmas/lib_fts/blob/master/code/fts_fuzzy_match.php), [Python](https://gist.github.com/menzenski/f0f846a254d269bd567e2160485f4b89)
+
 FAQ
 ===
 
@@ -40,11 +48,3 @@ Test code is full of C++11, STL, and all kinds of icky things. Tread with cautio
 
 Files in code/util are fully independent but not significant enough to warrant root status. They may be C++ oriented and may use C++11/14 features.
 
-Ports
-===
-
-These are externally hosted user written ports. I can not guarantee they are correct, up to date, or non-hostile. User beware!
-
-lib | lang
---------------------- | --------
-fts_fuzzy_match | [C#](https://github.com/CDillinger/lib_fts/blob/7b9f6783f74b4c31d8a09e5306b8e5558a28f67a/code/fts_fuzzy_match.cs), [F#](https://github.com/xavierzwirtz/lib_fts/blob/939fc8730334a97156ca1e0791ae11250154a1f4/code/fts_fuzzy_match.fsx), [Python](https://gist.github.com/menzenski/f0f846a254d269bd567e2160485f4b89)
