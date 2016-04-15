@@ -13,7 +13,7 @@ These are externally hosted, user written ports. I can not guarantee they are co
 
 lib | lang
 ---| ---
-fts_fuzzy_match | [C#](https://github.com/CDillinger/lib_fts/blob/7b9f6783f74b4c31d8a09e5306b8e5558a28f67a/code/fts_fuzzy_match.cs), [F#](https://github.com/xavierzwirtz/lib_fts/blob/939fc8730334a97156ca1e0791ae11250154a1f4/code/fts_fuzzy_match.fsx), [PHP](https://github.com/detectiveYarmas/lib_fts/blob/master/code/fts_fuzzy_match.php), [Python](https://gist.github.com/menzenski/f0f846a254d269bd567e2160485f4b89)
+fts_fuzzy_match | [C#](https://gist.github.com/CDillinger/2aa02128f840bdca90340ce08ee71bc2), [F#](https://github.com/xavierzwirtz/lib_fts/blob/939fc8730334a97156ca1e0791ae11250154a1f4/code/fts_fuzzy_match.fsx), [PHP](https://github.com/detectiveYarmas/lib_fts/blob/master/code/fts_fuzzy_match.php), [Python](https://gist.github.com/menzenski/f0f846a254d269bd567e2160485f4b89)
 
 FAQ
 ===
