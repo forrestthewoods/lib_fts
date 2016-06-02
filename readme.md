@@ -6,7 +6,7 @@ single-file public domain libraries
 lib | lang | doc | desc
 ---- | --- | --- | ---
 fts_fuzzy_match | [C++](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h), [JavaScript](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js) | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md), [blog](https://blog.forrestthewoods.com/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb#.m9cmfqknc), [demo](https://s3-us-west-2.amazonaws.com/forrestthewoods.staticweb/lib_fts/tests/fuzzy_match/fts_fuzzy_match_test.html) | Fuzzy string matching inspired by Sublime Text
-fts_ballistic_projectile | [C# (Unity)](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_ballistic_trajectory.cs) | [blog](https://medium.com/@ForrestTheWoods/solving-ballistic-trajectories-b0165523348c), [demo](https://medium.com/r/?url=http%3A%2F%2F%3Cli%3E%3Cspan%20class%3D%22bold%22%3E%20%3C%2Fspan%3E%20%3C%2Fli%3E) | Solve ballistic trajectory firing angles
+fts_ballistic_projectile | [C# (Unity)](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_ballistic_trajectory.cs) | [blog](https://blog.forrestthewoods.com/solving-ballistic-trajectories-b0165523348c#.krla7uaz8), [demo](https://dl.dropboxusercontent.com/u/2152526/fts_ballistic_trajectory_web/index.html) | Solve ballistic trajectory firing angles
 
 ## Ports
 
