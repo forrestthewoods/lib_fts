@@ -6,6 +6,7 @@ single-file public domain libraries
 lib | lang | doc | desc
 ---- | --- | --- | ---
 fts_fuzzy_match | [C++](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h), [JavaScript](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js) | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md), [blog](https://blog.forrestthewoods.com/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb#.m9cmfqknc), [demo](https://s3-us-west-2.amazonaws.com/forrestthewoods.staticweb/lib_fts/tests/fuzzy_match/fts_fuzzy_match_test.html) | Fuzzy string matching inspired by Sublime Text
+fts_ballistic_projectile | [C# Unity](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_ballistic_trajectory.cs) | [blog](https://medium.com/@ForrestTheWoods/solving-ballistic-trajectories-b0165523348c), [demo](https://medium.com/r/?url=http%3A%2F%2F%3Cli%3E%3Cspan%20class%3D%22bold%22%3E%20%3C%2Fspan%3E%20%3C%2Fli%3E) | Calculate ballistic trajectory firing angles
 
 ## Ports
 
@@ -14,6 +15,7 @@ These are externally hosted, user written ports. I can not guarantee they are co
 lib | lang
 ---| ---
 fts_fuzzy_match | [C#](https://gist.github.com/CDillinger/2aa02128f840bdca90340ce08ee71bc2), [F#](https://github.com/xavierzwirtz/lib_fts/blob/939fc8730334a97156ca1e0791ae11250154a1f4/code/fts_fuzzy_match.fsx), [PHP](https://github.com/detectiveYarmas/lib_fts/blob/master/code/fts_fuzzy_match.php), [Python](https://gist.github.com/menzenski/f0f846a254d269bd567e2160485f4b89)
+
 
 FAQ
 ===
