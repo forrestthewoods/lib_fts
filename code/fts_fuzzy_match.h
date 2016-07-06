@@ -81,7 +81,7 @@ namespace fts {
                 {
                     int count = int(strIter - str);
                     int penalty = leading_letter_penalty * count;
-                    if (penalty < max_leading_letter_penalty)
+                    if (penalty > max_leading_letter_penalty)
                         penalty = max_leading_letter_penalty;
 
                     score += penalty;
