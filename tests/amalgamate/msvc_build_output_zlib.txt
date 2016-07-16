@@ -1,0 +1,460 @@
+1>------ Build started: Project: zlib, Configuration: Debug Win32 ------
+1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (test.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+1>  zutil.c
+1>  Note: including file: c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file: c:\temp\zlib\zlib\gzguts.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdio.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdio.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_stdio_config.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\fcntl.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\io.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_io.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_share.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wio.h
+1>  uncompr.c
+1>  Note: including file: c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:  c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  trees.c
+1>  Note: including file: c:\temp\zlib\zlib\deflate.h
+1>  Note: including file:  c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:   c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:    c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:      C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:      C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file: c:\temp\zlib\zlib\trees.h
+1>  inftrees.c
+1>  Note: including file: c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file: c:\temp\zlib\zlib\inftrees.h
+1>  inflate.c
+1>  Note: including file: c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file: c:\temp\zlib\zlib\inftrees.h
+1>  Note: including file: c:\temp\zlib\zlib\inflate.h
+1>  Note: including file: c:\temp\zlib\zlib\inffast.h
+1>  Note: including file: c:\temp\zlib\zlib\inffixed.h
+1>  inffast.c
+1>  Note: including file: c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file: c:\temp\zlib\zlib\inftrees.h
+1>  Note: including file: c:\temp\zlib\zlib\inflate.h
+1>  Note: including file: c:\temp\zlib\zlib\inffast.h
+1>  infback.c
+1>  Note: including file: c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file: c:\temp\zlib\zlib\inftrees.h
+1>  Note: including file: c:\temp\zlib\zlib\inflate.h
+1>  Note: including file: c:\temp\zlib\zlib\inffast.h
+1>  Note: including file: c:\temp\zlib\zlib\inffixed.h
+1>  gzwrite.c
+1>  Note: including file: c:\temp\zlib\zlib\gzguts.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdio.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdio.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_stdio_config.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\fcntl.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\io.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_io.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_share.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wio.h
+1>c:\temp\zlib\zlib\gzwrite.c(84): warning C4996: 'write': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _write. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_io.h(556): note: see declaration of 'write'
+1>c:\temp\zlib\zlib\gzwrite.c(86): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\string.h(178): note: see declaration of 'strerror'
+1>c:\temp\zlib\zlib\gzwrite.c(102): warning C4996: 'write': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _write. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_io.h(556): note: see declaration of 'write'
+1>c:\temp\zlib\zlib\gzwrite.c(103): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\string.h(178): note: see declaration of 'strerror'
+1>c:\temp\zlib\zlib\gzwrite.c(573): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_io.h(457): note: see declaration of 'close'
+1>  gzread.c
+1>  Note: including file: c:\temp\zlib\zlib\gzguts.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdio.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdio.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_stdio_config.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\fcntl.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\io.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_io.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_share.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wio.h
+1>c:\temp\zlib\zlib\gzread.c(30): warning C4996: 'read': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _read. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_io.h(521): note: see declaration of 'read'
+1>c:\temp\zlib\zlib\gzread.c(36): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\string.h(178): note: see declaration of 'strerror'
+1>c:\temp\zlib\zlib\gzread.c(591): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_io.h(457): note: see declaration of 'close'
+1>  gzlib.c
+1>  Note: including file: c:\temp\zlib\zlib\gzguts.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdio.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdio.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_stdio_config.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\fcntl.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\io.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_io.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_share.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wio.h
+1>c:\temp\zlib\zlib\gzlib.c(193): warning C4996: 'wcstombs': This function or variable may be unsafe. Consider using wcstombs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1008): note: see declaration of 'wcstombs'
+1>c:\temp\zlib\zlib\gzlib.c(208): warning C4996: 'wcstombs': This function or variable may be unsafe. Consider using wcstombs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1008): note: see declaration of 'wcstombs'
+1>c:\temp\zlib\zlib\gzlib.c(214): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(1952): note: see declaration of '_snprintf'
+1>c:\temp\zlib\zlib\gzlib.c(245): warning C4996: '_wopen': This function or variable may be unsafe. Consider using _wsopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_wio.h(257): note: see declaration of '_wopen'
+1>c:\temp\zlib\zlib\gzlib.c(245): warning C4996: 'open': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _open. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\corecrt_io.h(514): note: see declaration of 'open'
+1>c:\temp\zlib\zlib\gzlib.c(294): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(1952): note: see declaration of '_snprintf'
+1>c:\temp\zlib\zlib\gzlib.c(608): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>  c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdio.h(1952): note: see declaration of '_snprintf'
+1>  gzclose.c
+1>  Note: including file: c:\temp\zlib\zlib\gzguts.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdio.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdio.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_stdio_config.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\fcntl.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\io.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_io.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_share.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wio.h
+1>  deflate.c
+1>  Note: including file: c:\temp\zlib\zlib\deflate.h
+1>  Note: including file:  c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:   c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:    c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:      C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:      C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  crc32.c
+1>  Note: including file: c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Note: including file: c:\temp\zlib\zlib\crc32.h
+1>  compress.c
+1>  Note: including file: c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:  c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  adler32.c
+1>  Note: including file: c:\temp\zlib\zlib\zutil.h
+1>  Note: including file:  c:\temp\zlib\zlib\zlib.h
+1>  Note: including file:   c:\temp\zlib\zlib\zconf.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+1>  Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\sys/types.h
+1>  Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stddef.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\string.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memory.h
+1>  Note: including file:    C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_memcpy_s.h
+1>  Note: including file:     C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\errno.h
+1>  Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+1>  Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstring.h
+1>  Note: including file:  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\stdlib.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_malloc.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_search.h
+1>  Note: including file:   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt\corecrt_wstdlib.h
+1>  Generating Code...
+1>  Skipping... (no relevant changes detected)
+1>  test.cpp
+1>  test.vcxproj -> c:\temp\zlib\Debug\zlib.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
