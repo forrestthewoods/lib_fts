@@ -5,7 +5,7 @@ single-file public domain libraries
 
 lib | lang | doc | desc
 ---- | --- | --- | ---
-fts_amalgamate | [Python](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_amalgamate.py) | [blog](https://blog.forrestthewoods.com/solving-ballistic-trajectories-b0165523348c#.krla7uaz8) | Code amalgamation tool inspired by [SQLite](https://www.sqlite.org/amalgamation.html)
+fts_amalgamate | [Python](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_amalgamate.py) | [blog](https://blog.forrestthewoods.com/improving-open-source-with-amalgamation-cf293592c5f4#.o4h222fzl) | Code amalgamation tool inspired by [SQLite](https://www.sqlite.org/amalgamation.html)
 fts_ballistic_projectile | [C# (Unity)](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_ballistic_trajectory.cs) | [blog](https://blog.forrestthewoods.com/solving-ballistic-trajectories-b0165523348c#.krla7uaz8), [demo](https://dl.dropboxusercontent.com/u/2152526/fts_ballistic_trajectory_web/index.html) | Solve ballistic trajectory firing angles
 fts_fuzzy_match | [C++](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.h), [JavaScript](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js) | [readme](https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md), [blog](https://blog.forrestthewoods.com/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb#.m9cmfqknc), [demo](https://s3-us-west-2.amazonaws.com/forrestthewoods.staticweb/lib_fts/tests/fuzzy_match/fts_fuzzy_match_test.html) | Fuzzy string matching inspired by Sublime Text
 
