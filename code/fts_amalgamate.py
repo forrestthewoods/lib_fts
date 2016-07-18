@@ -32,6 +32,10 @@ def fts_amalgamate(config, included_paths):
     # Append each input file
     for relpath in config['input']:
         fts_amalgamate_path(relpath, config, output_file, exclude_paths, included_paths)
+
+    # Append amalgamation footer
+    for line in config['amalgamation_footer']:
+        output_file.write(line + '\n')
         
     # Save output file
     print 'Saving output: {0}\n'.format(config['output'])
@@ -134,6 +138,9 @@ def main():
         '// DO NOT EDIT BY HAND!!!\n\n\n',
     ]
 
+    amalgamation_footer = [
+    ]
+
     # Header placed before the contents of each input file
     file_header = [
         '// ----------------------------------------------------------------------------',
@@ -190,6 +197,7 @@ def main():
     # Amalgamate header files
     config = {}
     config['amalgamation_header'] = list(amalgamation_header)
+    config['amalgamation_footer'] = list(amalgamation_footer)
     config['file_header'] = file_header
     config['file_footer'] = file_footer
     config['input'] = headers
@@ -204,6 +212,7 @@ def main():
     # Amalgamate source files
     config = {}
     config['amalgamation_header'] = list(amalgamation_header)
+    config['amalgamation_footer'] = list(amalgamation_footer)
     config['amalgamation_header'] += ['#include "foo_amalg.h"']
     config['amalgamation_header'] += ['','','']
     config['file_header'] = file_header
