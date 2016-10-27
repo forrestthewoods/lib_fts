@@ -58,11 +58,11 @@ namespace fts {
             const char patternLetter = *patternIter;
             const char strLetter = *strIter;
 
-            bool nextMatch = *patternIter != '\0' && tolower(patternLetter) == tolower(strLetter);
+            bool nextMatch = patternLetter != '\0' && tolower(patternLetter) == tolower(strLetter);
             bool rematch = bestLetter && tolower(*bestLetter) == tolower(strLetter);
 
             bool advanced = nextMatch && bestLetter;
-            bool patternRepeat = bestLetter && patternIter != '\0' && tolower(*bestLetter) == tolower(patternLetter);
+            bool patternRepeat = bestLetter && patternLetter != '\0' && tolower(*bestLetter) == tolower(patternLetter);
 
             if (advanced || patternRepeat) 
             {
