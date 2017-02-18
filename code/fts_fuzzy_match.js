@@ -3,8 +3,16 @@
 //   This software is dual-licensed to the public domain and under the following
 //   license: you are granted a perpetual, irrevocable license to copy, modify,
 //   publish, and distribute this file as you see fit.
+//
+// VERSION 
+//   0.1.0  (2016-03-28)  Initial release
+//
+// AUTHOR
+//   Forrest Smith
+//
+// CONTRIBUTORS
+//   Jørgen Tjernø - async helper
 
-// VERSION 0.1.0
 
 // Returns true if each character in pattern is found sequentially within str
 function fuzzy_match_simple(pattern, str) {
