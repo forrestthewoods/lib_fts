@@ -1,21 +1,62 @@
-// LICENSE
+  // LICENSE
 //
 //   This software is dual-licensed to the public domain and under the following
 //   license: you are granted a perpetual, irrevocable license to copy, modify,
 //   publish, and distribute this file as you see fit.
+//
+// VERSION 
+//   0.2.0  (2017-02-18)  Scored matches perform exhaustive search for best score
+//   0.1.0  (2016-03-28)  Initial release
+//
+// AUTHOR
+//   Forrest Smith
+//
+// NOTES
+//   Compiling
+//     You MUST add '#define FTS_FUZZY_MATCH_IMPLEMENTATION' before including this header in ONE source file to create implementation.
+//
+//   fuzzy_match_simple(...)
+//     Returns true if each character in pattern is found sequentially within str
+//
+//   fuzzy_match(...)
+//     Returns true if pattern is found AND calculates a score.
+//     Performs exhaustive search via recursion to find all possible matches and match with highest score.
+//     Scores values have no intrinsic meaning. Possible score range is not normalized and varies with pattern.
+//     Recursion is limited internally (default=10) to prevent degenerate cases (pattern="aaaaaa" str="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+//     Uses uint8_t for match indices. Therefore patterns are limited to 256 characters.
+//     Score system should be tuned for YOUR use case. Words, sentences, file names, or method names all prefer different tuning.
 
-// VERSION 0.1.0
 
 #ifndef FTS_FUZZY_MATCH_H
 #define FTS_FUZZY_MATCH_H
 
-#include <ctype.h> // ::tolower, ::toupper
 
+#include <cstdint> // uint8_t
+#include <ctype.h> // ::tolower, ::toupper
+#include <cstring> // memcpy
+
+#include <cstdio>
+
+// Public interface
 namespace fts {
-    
-    // Returns true if each character in pattern is found sequentially within str
-    static bool fuzzy_match(char const * pattern, char const * str) 
-    {
+    static bool fuzzy_match_simple(char const * pattern, char const * str);
+    static bool fuzzy_match(char const * pattern, char const * str, int & outScore);
+    static bool fuzzy_match(char const * pattern, char const * str, int & outScore, uint8_t * matches, int maxMatches);
+}
+
+
+#ifdef FTS_FUZZY_MATCH_IMPLEMENTATION
+namespace fts {
+
+    // Forward declarations for "private" implementation
+    namespace fuzzy_internal {
+        static bool fuzzy_match_recursive(const char * pattern, const char * str, int & outScore, const char * strBegin,          
+            uint8_t const * srcMatches,  uint8_t * newMatches,  int maxMatches, int nextMatch, 
+            int & recursionCount, int recursionLimit);
+    }
+
+    // Public interface
+    static bool fuzzy_match_simple(char const * pattern, char const * str) {
         while (*pattern != '\0' && *str != '\0')  {
             if (tolower(*pattern) == tolower(*str))
                 ++pattern;
@@ -25,122 +66,156 @@ namespace fts {
         return *pattern == '\0' ? true : false;
     }
 
-    // Returns true if each character in pattern is found sequentially within str
-    // iff found then outScore is also set. Score value has no intrinsic meaning. Range varies with pattern. 
-    // Can only compare scores with same search pattern.
-    static bool fuzzy_match(char const * pattern, char const * str, int & outScore) 
-    {
-        // Score consts
-        const int adjacency_bonus = 5;              // bonus for adjacent matches
-        const int separator_bonus = 10;             // bonus if match occurs after a separator
-        const int camel_bonus = 10;                 // bonus if match is uppercase and prev is lower
+    static bool fuzzy_match(char const * pattern, char const * str, int & outScore) {
         
-        const int leading_letter_penalty = -3;      // penalty applied for every letter in str before the first match
-        const int max_leading_letter_penalty = -9;  // maximum penalty for leading letters
-        const int unmatched_letter_penalty = -1;    // penalty for every letter that doesn't matter
-
-
-        // Loop variables
-        int score = 0;
-        char const * patternIter = pattern;
-        char const * strIter = str;
-        bool prevMatched = false;
-        bool prevLower = false;
-        bool prevSeparator = true;                  // true so if first letter match gets separator bonus
-
-        // Use "best" matched letter if multiple string letters match the pattern
-        char const * bestLetter = NULL;
-        int bestLetterScore = 0;
-
-        // Loop over strings
-        while (*strIter != '\0') 
-        {
-            const char patternLetter = *patternIter;
-            const char strLetter = *strIter;
-
-            bool nextMatch = patternLetter != '\0' && tolower(patternLetter) == tolower(strLetter);
-            bool rematch = bestLetter && tolower(*bestLetter) == tolower(strLetter);
-
-            bool advanced = nextMatch && bestLetter;
-            bool patternRepeat = bestLetter && patternLetter != '\0' && tolower(*bestLetter) == tolower(patternLetter);
-
-            if (advanced || patternRepeat) 
-            {
-                score += bestLetterScore;
-                bestLetter = NULL;
-                bestLetterScore = 0;
-            }
-
-            if (nextMatch || rematch)
-            {
-                int newScore = 0;
-
-                // Apply penalty for each letter before the first pattern match
-                // Note: std::max because penalties are negative values. So max is smallest penalty.
-                if (patternIter == pattern)
-                {
-                    int count = int(strIter - str);
-                    int penalty = leading_letter_penalty * count;
-                    if (penalty < max_leading_letter_penalty)
-                        penalty = max_leading_letter_penalty;
-
-                    score += penalty;
-                } 
-
-                // Apply bonus for consecutive bonuses
-                if (prevMatched)
-                    newScore += adjacency_bonus;
-
-                // Apply bonus for matches after a separator
-                if (prevSeparator)
-                    newScore += separator_bonus;
-
-                // Apply bonus across camel case boundaries
-                if (prevLower && isupper(strLetter))
-                    newScore += camel_bonus;
-
-                // Update pattern iter IFF the next pattern letter was matched
-                if (nextMatch)
-                    ++patternIter;
-
-                // Update best letter in str which may be for a "next" letter or a rematch
-                if (newScore >= bestLetterScore) 
-                {
-                    // Apply penalty for now skipped letter
-                    if (bestLetter != NULL)
-                        score += unmatched_letter_penalty;
-
-                    bestLetter = strIter;
-                    bestLetterScore = newScore;
-                }
-
-                prevMatched = true;
-            }
-            else
-            {
-                score += unmatched_letter_penalty;
-                prevMatched = false;
-            }
-
-            // Separators should be more easily defined
-            prevLower = islower(strLetter) != 0;
-            prevSeparator = strLetter == '_' || strLetter == ' ';
-
-            ++strIter;
-        }
-
-        // Apply score for last match
-        if (bestLetter) 
-            score += bestLetterScore;
-
-        // Did not match full pattern
-        if (*patternIter != '\0')
-            return false;
-
-        outScore = score;
-        return true;
+        uint8_t matches[256];
+        return fuzzy_match(pattern, str, outScore, matches, sizeof(matches));
     }
 
+    static bool fuzzy_match(char const * pattern, char const * str, int & outScore, uint8_t * matches, int maxMatches) {
+        int recursionCount = 0;
+        int recursionLimit = 10;
+
+        return fuzzy_internal::fuzzy_match_recursive(pattern, str, outScore, str, nullptr, matches, maxMatches, 0, recursionCount, recursionLimit);
+    }
+
+    // Private implementation
+    static bool fuzzy_internal::fuzzy_match_recursive(const char * pattern, const char * str, int & outScore, 
+        const char * strBegin, uint8_t const * srcMatches, uint8_t * matches, int maxMatches, 
+        int nextMatch, int & recursionCount, int recursionLimit)
+    {
+        // Count recursions
+        ++recursionCount;
+        if (recursionCount >= recursionLimit)
+            return false;
+
+        // Detect end of strings
+        if (*pattern == '\0' || *str == '\0')
+            return false;
+
+        // Recursion params
+        bool recursiveMatch = false;
+        uint8_t bestRecursiveMatches[256];
+        int bestRecursiveScore = 0;
+
+        // Loop through pattern and str looking for a match
+        bool first_match = true;
+        while (*pattern != '\0' && *str != '\0') {
+            
+            // Found match
+            if (tolower(*pattern) == tolower(*str)) {
+
+                // Supplied matches buffer was too short
+                if (nextMatch >= maxMatches)
+                    return false;
+                
+                // "Copy-on-Write" srcMatches into matches
+                if (first_match && srcMatches) {
+                    memcpy(matches, srcMatches, nextMatch);
+                    first_match = false;
+                }
+
+                // Recursive call that "skips" this match
+                uint8_t recursiveMatches[256];
+                int recursiveScore;
+                if (fuzzy_match_recursive(pattern, str + 1, recursiveScore, strBegin, matches, recursiveMatches, sizeof(recursiveMatches), nextMatch, recursionCount, recursionLimit)) {
+                    
+                    // Pick best recursive score
+                    if (!recursiveMatch || recursiveScore > bestRecursiveScore) {
+                        memcpy(bestRecursiveMatches, recursiveMatches, 256);
+                        bestRecursiveScore = recursiveScore;
+                    }
+                    recursiveMatch = true;
+                }
+
+                // Advance
+                matches[nextMatch++] = (uint8_t)(str - strBegin);
+                ++pattern;
+            }
+            ++str;
+        }
+
+        // Determine if full pattern was matched
+        bool matched = *pattern == '\0' ? true : false;
+
+        // Calculate score
+        if (matched) {
+            const int sequential_bonus = 15;            // bonus for adjacent matches
+            const int separator_bonus = 30;             // bonus if match occurs after a separator
+            const int camel_bonus = 30;                 // bonus if match is uppercase and prev is lower
+            const int first_letter_bonus = 15;          // bonus if the first letter is matched
+
+            const int leading_letter_penalty = -5;      // penalty applied for every letter in str before the first match
+            const int max_leading_letter_penalty = -15; // maximum penalty for leading letters
+            const int unmatched_letter_penalty = -1;    // penalty for every letter that doesn't matter
+
+            // Iterate str to end
+            while (*str != '\0')
+                ++str;
+
+            // Initialize score
+            outScore = 100;
+
+            // Apply leading letter penalty
+            int penalty = leading_letter_penalty * matches[0];
+            if (penalty < max_leading_letter_penalty)
+                penalty = max_leading_letter_penalty;
+            outScore += penalty;
+
+            // Apply unmatched penalty
+            int unmatched = (int)(str - strBegin) - nextMatch;
+            outScore += unmatched_letter_penalty * unmatched;
+
+            // Apply ordering bonuses
+            for (int i = 0; i < nextMatch; ++i) {
+                uint8_t currIdx = matches[i];
+
+                if (i > 0) {
+                    uint8_t prevIdx = matches[i - 1];
+
+                    // Sequential
+                    if (currIdx == (prevIdx + 1))
+                        outScore += sequential_bonus;
+                }
+
+                // Check for bonuses based on neighbor character value
+                if (currIdx > 0) {
+                    // Camel case
+                    char neighbor = strBegin[currIdx - 1];
+                    char curr = strBegin[currIdx];
+                    if (::islower(neighbor) && ::isupper(curr))
+                        outScore += camel_bonus;
+
+                    // Separator
+                    bool neighborSeparator = neighbor == '_' || neighbor == ' ';
+                    if (neighborSeparator)
+                        outScore += separator_bonus;
+                }
+                else {
+                    // First letter
+                    outScore += first_letter_bonus;
+                }
+            }
+        }
+
+        // Return best result
+        if (recursiveMatch && (!matched || bestRecursiveScore > outScore)) {
+            // Recursive score is better than "this"
+            memcpy(matches, bestRecursiveMatches, maxMatches);
+            outScore = bestRecursiveScore;
+            return true;
+        }
+        else if (matched) {
+            // "this" score is better than recursive
+            return true;
+        }
+        else {
+            // no match
+            return false;
+        }
+    }
 } // namespace fts
+
+#endif // FTS_FUZZY_MATCH_IMPLEMENTATION
 
 #endif // FTS_FUZZY_MATCH_H

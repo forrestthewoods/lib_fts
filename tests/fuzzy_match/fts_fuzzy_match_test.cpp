@@ -3,6 +3,11 @@
 //   This software is dual-licensed to the public domain and under the following
 //   license: you are granted a perpetual, irrevocable license to copy, modify,
 //   publish, and distribute this file as you see fit.
+//
+// AUTHOR
+//   Forrest Smith
+
+#define FTS_FUZZY_MATCH_IMPLEMENTATION
 
 #include "..\..\code\fts_fuzzy_match.h"
 #include "..\..\code\util\fts_timer.h"
@@ -23,7 +28,7 @@ int main(int argc, char *argv[]) {
     auto countMatches = [&dictionary](std::string const & pattern) -> int { 
         int matches = 0;
         for (auto && entry : dictionary)
-            if (fts::fuzzy_match(pattern.c_str(), entry.c_str()))
+            if (fts::fuzzy_match_simple(pattern.c_str(), entry.c_str()))
                 ++matches;
 
         return matches; 
@@ -32,7 +37,7 @@ int main(int argc, char *argv[]) {
     auto alphabeticalMatches = [&dictionary](std::string const & pattern) {
         std::vector<std::string const *> matches;
         for (auto && entry : dictionary)
-            if (fts::fuzzy_match(pattern.c_str(), entry.c_str()))
+            if (fts::fuzzy_match_simple(pattern.c_str(), entry.c_str()))
                 matches.push_back(&entry);
 
         return matches;
@@ -49,6 +54,7 @@ int main(int argc, char *argv[]) {
         
         return matches;
     };
+
 
     // Open file
     using namespace std::string_literals;
@@ -69,7 +75,6 @@ int main(int argc, char *argv[]) {
     auto time = stopwatch.elapsedMilliseconds();
     std::cout << "Read [" << dictionary.size() << "] entries in " << time << "ms" << std::endl << std::endl;
 
-
     // Input Loop
     std::string option;
     std::string pattern;
@@ -84,7 +89,7 @@ int main(int argc, char *argv[]) {
         std::getline(std::cin, option);
         std::cout << std::endl;
 
-        if (option == "1" || option == "2" || option == "3") {
+        if (option != "4") {
 
             // Read pattern from std::cin
             std::cout << "Enter search pattern" << std::endl << std::endl << "> ";
