@@ -37,7 +37,7 @@ public class WASDCameraController : MonoBehaviour {
             _camera.transform.position += _camera.transform.up * moveSpeed * dt;
 
         // Freelook
-        if (Input.GetMouseButton(2)) {
+        if (Input.GetMouseButton(2) || Input.GetMouseButton(1)) {
             float x = Input.GetAxis("Mouse X") * dt * 50 * rotateSpeed * Mathf.Deg2Rad;
             float y = Input.GetAxis("Mouse Y") * dt * 50 * rotateSpeed * Mathf.Deg2Rad;
 

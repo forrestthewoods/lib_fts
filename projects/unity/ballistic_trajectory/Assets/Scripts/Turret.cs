@@ -33,6 +33,22 @@ public class Turret : MonoBehaviour {
     
     // Methods
     void Update() {
+        // Update turret positoin
+        float dt = Time.deltaTime;
+        const float moveSpeed = 5f;
+
+        Vector3 right = new Vector3(Camera.main.transform.right.x, 0, Camera.main.transform.right.z).normalized;
+        Vector3 forward = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized;
+
+        if (Input.GetKey(KeyCode.J))
+            transform.position -= right * moveSpeed * dt;
+        else if (Input.GetKey(KeyCode.L))
+            transform.position += right * moveSpeed * dt;
+
+        if (Input.GetKey(KeyCode.I))
+            transform.position += forward * moveSpeed * dt;
+        else if (Input.GetKey(KeyCode.K))
+            transform.position -= forward * moveSpeed * dt;
 
         // Update turret height
         transform.position = new Vector3(transform.position.x, parameters.turretHeight, transform.position.z);
