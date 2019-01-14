@@ -46,7 +46,11 @@ public class Parameters : MonoBehaviour {
             uiRoot.SetActive(!uiRoot.activeSelf);
 
         if (Input.GetKeyDown(KeyCode.F))
-            aimMode = aimMode == AimMode.Normal ? AimMode.Lateral : AimMode.Normal;
+            ToggleAimMode();
+    }
+
+    public void ToggleAimMode() {
+        aimMode = aimMode == AimMode.Normal ? AimMode.Lateral : AimMode.Normal;
     }
 
     // Enums

@@ -21,17 +21,25 @@ public class Target : MonoBehaviour {
     public Vector3 velocity { get; set; }
     public bool moving { get; set; }
 
+    // Constants
+    const float targetMaxHeight = 10f;
+    const float targetDist = 40f;
+    const float moveSpeed = 7.5f;
+
+    // Methods
+    public void ToggleMoving()
+    {
+        moving = !moving;
+        if (moving)
+            targetPos = new Vector3(transform.position.x, Random.Range(0f, targetMaxHeight), targetDist);
+        else
+            velocity = Vector3.zero;
+    }
+
     void Update() {
-        const float moveSpeed = 7.5f;
-        const float targetDist = 40f;
-        const float targetMaxHeight = 10f;
 
         if (Input.GetKeyDown(KeyCode.M)) {
-            moving = !moving;
-            if (moving)
-                targetPos = new Vector3(transform.position.x, Random.Range(0f, targetMaxHeight), targetDist);
-            else
-                velocity = Vector3.zero;
+            ToggleMoving();
         }
 
         if (moving) {
