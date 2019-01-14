@@ -42,7 +42,7 @@ public class FrameDumper : MonoBehaviour {
 
         if (dumping) {
             var name = string.Format("{0}/shot{1:D04}.png", realFolder, frame++ );
-            Application.CaptureScreenshot(name, 1);
+            ScreenCapture.CaptureScreenshot(name, 1);
         }
     }
 }
