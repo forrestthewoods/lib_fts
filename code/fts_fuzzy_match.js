@@ -118,7 +118,7 @@ function fuzzyMatchRecursive(
         firstMatch = false;
       }
 
-      recursiveMatches = [];
+      const recursiveMatches = [];
       const [matched, recursiveScore] = fuzzyMatchRecursive(
         pattern,
         str,
