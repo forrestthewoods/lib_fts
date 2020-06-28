@@ -391,8 +391,8 @@ public class fts {
 
         // Quartic Coeffecients
         double c0 = L*L;
-        double c1 = 2*Q*L;
-        double c2 = Q*Q + 2*K*L - S*S + P*P + R*R;
+        double c1 = -2*Q*L;
+        double c2 = Q*Q - 2*K*L - S*S + P*P + R*R;
         double c3 = 2*K*Q + 2*H*P + 2*J*R;
         double c4 = K*K + H*H + J*J;
 
