@@ -73,6 +73,11 @@ public class fts {
         }
     }
 
+    private static double GetCubicRoot(double value)
+    {
+        return value > 0 ? System.Math.Pow(value, 1.0 / 3.0) : -System.Math.Pow(-value, 1.0 / 3.0);
+    }
+
     // Solve cubic equation: c0*x^3 + c1*x^2 + c2*x + c3. 
     // Returns number of solutions.
     public static int SolveCubic(double c0, double c1, double c2, double c3, out double s0, out double s1, out double s2)
@@ -107,7 +112,7 @@ public class fts {
 	            num = 1;
 	        }
 	        else /* one single and one double solution */ {
-	            double u = System.Math.Pow(-q, 1.0/3.0);
+	            double u = GetCubicRoot(-q);
 	            s0 = 2 * u;
 	            s1 = - u;
 	            num = 2;
@@ -124,8 +129,8 @@ public class fts {
         }
         else /* one real solution */ {
 	        double sqrt_D = System.Math.Sqrt(D);
-	        double u = System.Math.Pow(sqrt_D - q, 1.0/3.0);
-	        double v = - System.Math.Pow(sqrt_D + q, 1.0/3.0);
+            double u = GetCubicRoot(sqrt_D - q);
+            double v = -GetCubicRoot(sqrt_D + q);
 
 	        s0 = u + v;
 	        num = 1;
