@@ -181,8 +181,8 @@ function fuzzyMatchRecursive(
         const neighbor = str[currIdx - 1];
         const curr = str[currIdx];
         if (
-          neighbor === neighbor.toLowerCase() &&
-          curr === curr.toUpperCase()
+          neighbor !== neighbor.toUpperCase() &&
+          curr !== curr.toLowerCase()
         ) {
           outScore += CAMEL_BONUS;
         }
@@ -252,8 +252,8 @@ function ftsFuzzyMatchAsync(matchFn, pattern, dataSet, onComplete) {
       var result = matchFn(pattern, str);
 
       // A little gross because fuzzy_match_simple and fuzzy_match return different things
-      if (matchFn == fuzzyMatchSimple && result == true) results.push(str);
-      else if (matchFn == fuzzyMatch && result[0] == true) results.push(result);
+      if (matchFn === fuzzyMatchSimple && result == true) results.push(str);
+      else if (matchFn === fuzzyMatch && result[0] == true) results.push([result[1], str]);
     }
 
     onComplete(results);
