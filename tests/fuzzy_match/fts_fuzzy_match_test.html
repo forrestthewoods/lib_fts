@@ -41,7 +41,7 @@
 
     <script>
         var patternField;
-        var matchFn = fuzzy_match;
+        var matchFn = fuzzyMatch;
         var resultsTime;
         var resultsList = null;
         var currentDataSet = dataSets["ue4_filenames"];
@@ -104,12 +104,12 @@
 
             var startTime = performance.now();  
 
-            asyncMatcher = new fts_fuzzy_match_async(matchFn, pattern, currentDataSet, function(results) {
+            asyncMatcher = new ftsFuzzyMatchAsync(matchFn, pattern, currentDataSet, function(results) {
                 // Scored function requires sorting
-                if (matchFn == fuzzy_match) {
+                if (matchFn === fuzzyMatch) {
                     results = results
-                        .sort(function(a,b) { return b[1] - a[1]; })
-                        .map(function(v) { return v[1] + " - " + v[2]; });
+                        .sort(function(a,b) { return b[0] - a[0]; })
+                        .map(function(v) { return v[0] + " - " + v[1]; });
                 }
 
                 var endTime = performance.now();
@@ -125,7 +125,7 @@
         };
 
         onFormatChange = function(radio) {
-            matchFn = radio.value == "PrintByScore" ? fuzzy_match : fuzzy_match_simple;
+            matchFn = radio.value == "PrintByScore" ? fuzzyMatch : fuzzyMatchSimple;
             onPatternChange();
         }
 
