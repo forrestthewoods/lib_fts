@@ -38,9 +38,20 @@ public class fts {
     // https://github.com/erich666/GraphicsGems/blob/240a34f2ad3fa577ef57be74920db6c4b00605e4/gems/Roots3And4.c
 
     // Utility function used by SolveQuadratic, SolveCubic, and SolveQuartic
-    public static bool IsZero(double d) {
+    private static bool IsZero(double d) {
         const double eps = 1e-9;
         return d > -eps && d < eps;
+    }
+
+    private static double GetCubicRoot(double value)
+    {   
+        if (value > 0.0) {
+            return System.Math.Pow(value, 1.0 / 3.0);
+        } else if (value < 0) {
+            return -System.Math.Pow(-value, 1.0 / 3.0);
+        } else {
+            return 0.0;
+        }
     }
 
     // Solve quadratic equation: c0*x^2 + c1*x + c2. 
@@ -107,7 +118,7 @@ public class fts {
 	            num = 1;
 	        }
 	        else /* one single and one double solution */ {
-	            double u = System.Math.Pow(-q, 1.0/3.0);
+	            double u = GetCubicRoot(-q);
 	            s0 = 2 * u;
 	            s1 = - u;
 	            num = 2;
@@ -124,8 +135,8 @@ public class fts {
         }
         else /* one real solution */ {
 	        double sqrt_D = System.Math.Sqrt(D);
-	        double u = System.Math.Pow(sqrt_D - q, 1.0/3.0);
-	        double v = - System.Math.Pow(sqrt_D + q, 1.0/3.0);
+            double u = GetCubicRoot(sqrt_D - q);
+            double v = -GetCubicRoot(sqrt_D + q);
 
 	        s0 = u + v;
 	        num = 1;
@@ -149,7 +160,7 @@ public class fts {
         s2 = double.NaN;
         s3 = double.NaN;
 
-        double[]  coeffs = new double[4];
+        double[] coeffs = new double[4];
         double  z, u, v, sub;
         double  A, B, C, D;
         double  sq_A, p, q, r;
@@ -218,8 +229,8 @@ public class fts {
 	        coeffs[ 0 ] = 1;
 
             if (num == 0) num += fts.SolveQuadric(coeffs[0], coeffs[1], coeffs[2], out s0, out s1);
-            if (num == 1) num += fts.SolveQuadric(coeffs[0], coeffs[1], coeffs[2], out s1, out s2);
-            if (num == 2) num += fts.SolveQuadric(coeffs[0], coeffs[1], coeffs[2], out s2, out s3);
+            else if (num == 1) num += fts.SolveQuadric(coeffs[0], coeffs[1], coeffs[2], out s1, out s2);
+            else if (num == 2) num += fts.SolveQuadric(coeffs[0], coeffs[1], coeffs[2], out s2, out s3);
         }
 
         /* resubstitute */
@@ -391,8 +402,8 @@ public class fts {
 
         // Quartic Coeffecients
         double c0 = L*L;
-        double c1 = 2*Q*L;
-        double c2 = Q*Q + 2*K*L - S*S + P*P + R*R;
+        double c1 = -2*Q*L;
+        double c2 = Q*Q - 2*K*L - S*S + P*P + R*R;
         double c3 = 2*K*Q + 2*H*P + 2*J*R;
         double c4 = K*K + H*H + J*J;
 
@@ -408,9 +419,9 @@ public class fts {
         Vector3[] solutions = new Vector3[2];
         int numSolutions = 0;
 
-        for (int i = 0; i < numTimes && numSolutions < 2; ++i) {
+        for (int i = 0; i < times.Length && numSolutions < 2; ++i) {
             double t = times[i];
-            if ( t <= 0)
+            if (t <= 0 || double.IsNaN(t))
                 continue;
 
             solutions[numSolutions].x = (float)((H+P*t)/t);
