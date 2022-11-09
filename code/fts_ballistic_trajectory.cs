@@ -11,7 +11,7 @@
 //   Forrest Smith
 //
 // ADDITIONAL READING
-//   https://medium.com/@ForrestTheWoods/solving-ballistic-trajectories-b0165523348c
+//   https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/
 //
 // API
 //    int solve_ballistic_arc(Vector3 proj_pos, float proj_speed, Vector3 target, float gravity, out Vector3 low, out Vector3 high);
